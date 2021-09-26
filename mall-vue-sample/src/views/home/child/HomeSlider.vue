@@ -1,0 +1,33 @@
+<template>
+  <div>
+    <slider :items="banners" :customStyle="customStyle()"></slider>
+  </div>
+</template>
+
+<script>
+import Slider from "components/Slider.vue";
+export default {
+  components: {
+    Slider,
+  },
+  props: {
+    banners: {
+      type: Array,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      customStyle: {
+        indicatorColorActive: "#f7615b",
+        indicatorColor: "#000",
+        size: 8,
+      },
+    };
+  },
+  methods: {},
+  created() {},
+};
+</script>
+<style scoped>
+</style>
