@@ -1,8 +1,8 @@
 <template>
   <div class="home">
-    <tool-bar class="home-toolbar">
+    <!-- <tool-bar class="home-toolbar">
       <div slot="center">购物</div>
-    </tool-bar>
+    </tool-bar> -->
     <home-goods-indicator
       class="top-goods-indicator"
       ref="topGoodsIndicator"
@@ -18,7 +18,7 @@
       class="scroll-view-wrraper"
       ref="scroll"
     >
-      <!-- <home-slider :banners="banners"></home-slider> -->
+      <home-slider :banners="banners"></home-slider>
       <home-recommend :recommends="recommends"></home-recommend>
       <home-goods-indicator
         ref="contentGoodsIndicator"
@@ -170,7 +170,7 @@ export default {
 .home {
   width: 100vw;
   top: 0px;
-  bottom: 0px;
+  bottom: var(--tabbar-height);
   position: absolute;
 }
 .home-toolbar {
@@ -185,7 +185,8 @@ export default {
 }
 .scroll-view-wrraper {
   position: absolute;
-  top: var(--toolbar-height);
+  /* top: var(--toolbar-height); */
+  top: 0;
   bottom: 0px;
   left: 0;
   right: 0;

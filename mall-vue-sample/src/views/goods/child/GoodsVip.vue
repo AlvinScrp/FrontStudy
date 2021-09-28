@@ -1,19 +1,21 @@
 <template>
   <div class="vip">
-    <span class="vip-pirce" ref="vipPrice">
-      <span class="price-label">黑卡价</span>
+    <span class="vip-pirce">
+      <span class="price-label"
+        ><span class="price-label-inner">黑卡价</span></span
+      >
       <span class="price-value">{{ formatPrice(vip.memberPrice, true) }}</span>
     </span>
 
     <div class="vip-discount-info">
       <span class="discount-label">开卡本单预计可省</span>
       <span class="discount-value">{{ discountValue }}</span>
-      <i class="icon-info"></i>
+      <i class="iconfont mall-info"></i>
     </div>
     <div class="vip-empty"></div>
     <div class="vip-member-rights">
       <span class="member-rights-label">开卡福利</span>
-      <i class="icon-circle-right"></i>
+      <i class="iconfont mall-arrow-right"></i>
     </div>
   </div>
 </template>
@@ -26,9 +28,7 @@ export default {
     },
   },
   data() {
-    return {
-     
-    };
+    return {};
   },
   computed: {
     discountValue() {
@@ -39,12 +39,6 @@ export default {
       }
       return "";
     },
-    // memberPriceStr() {
-    //   if (this.vip) {
-    //     return this.vip.memberPrice;
-    //   }
-    //   return "";
-    // },
   },
 
   methods: {
@@ -52,14 +46,6 @@ export default {
       return (withDollar ? "¥" : "") + `${price / 100.0}`;
     },
   },
-  // mounted() {
-  //   const boundClient = this.$refs.vipPrice.getBoundingClientRect();
-  //   this.transform = `scale(${this.scale})`;
-  //   let width = boundClient.width * this.scale;
-  //   let height = boundClient.height * this.scale;
-  //   console.log(`width:${width}`);
-  //   this.styleObj = { width: width + "px", height: height + "px" };
-  // },
 };
 </script>
 <style lang="less" scoped>
@@ -79,68 +65,60 @@ export default {
   );
 
   .vip-pirce {
-    width: 1rem;
-    display: inline-block;
-    transform: scale(0.5);
-    transform-origin: 0 50%;
-    white-space: nowrap;
-    // zoom:0.5;
-    box-sizing: border-box;
-
     .price-label {
       background: linear-gradient(78deg, #5e5447, #302a22);
-      border-radius: 0.18rem 0 0 0.18rem;
+      border-radius: 0.09rem 0 0 0.09rem;
       font-family: "PingFangSC-Regular";
-      padding: 0 0.08rem 0 0.12rem;
-      padding-right: 0.1rem;
-      line-height: 0.36rem;
-      font-size: 0.2rem;
-      height: 0.36rem;
+      padding: 0 0.03rem 0 0.05rem;
+      line-height: 0.18rem;
+      font-size: 0.1rem;
+      height: 0.18rem;
       box-sizing: border-box;
       color: #fbe19d;
       display: inline-block;
+      vertical-align: top;
+
+      .price-label-inner {
+        font-size: 0.12rem;
+        transform: scale(0.83);
+        transform-origin: 50% 50%;
+        display: inline-block;
+      }
     }
     .price-value {
+      vertical-align: top;
       color: #7b591c;
-      font-size: 0.24rem;
+      font-size: 0.12rem;
       background: linear-gradient(90deg, #ffe8a4, #e8bf79);
       font-weight: 500;
       display: inline-block;
-      height: 0.36rem;
-      border-radius: 0 0.18rem 0.18rem 0;
-      line-height: 0.36rem;
-      padding: 0 0.14rem 0 0.04rem;
+      height: 0.18rem;
+      border-radius: 0 0.09rem 0.09rem 0;
+      line-height: 0.18rem;
+      padding: 0 0.07rem 0 0.03rem;
       box-sizing: border-box;
-      vertical-align: top;
     }
   }
 
   .vip-discount-info {
+    margin-left: 0.1rem;
     position: relative;
-    display: inline-block;
+    display: flex;
     color: #7b591c;
     font-weight: 400;
     height: 0.18rem;
     font-size: 0.12rem;
-
-    .discount-label {
-      vertical-align: middle;
-      line-height: 0.18rem;
-    }
+    align-items: center;
 
     .discount-value {
-      vertical-align: middle;
       margin-left: 0.02rem;
       font-size: 0.14rem;
       color: #ff5058;
-      line-height: 0.18rem;
       font-weight: 500;
     }
     i {
-      vertical-align: middle;
       margin-left: 0.02rem;
       color: grey;
-      line-height: 0.18rem;
     }
   }
 
@@ -149,20 +127,11 @@ export default {
   }
 
   .vip-member-rights {
-    display: inline-block;
+    display: flex;
     color: #7b591c;
     font-weight: 400;
     font-size: 0.12rem;
-
-    .member-rights-label {
-      line-height: 0.18rem;
-      vertical-align: middle;
-    }
-    i {
-      line-height: 0.18rem;
-      margin-left: 0.02rem;
-      vertical-align: middle;
-    }
+    align-items: center;
   }
 }
 </style>

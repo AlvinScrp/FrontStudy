@@ -184,6 +184,7 @@ export default {
 }
 .slider {
   display: flex;
+  width: 100%;
 }
 
 .slider-item img {

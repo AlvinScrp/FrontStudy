@@ -1,40 +1,30 @@
 <template>
-  <div class="goods" ref="goods">
-    <goods-detail-indicator
+  <section class="goods" ref="goods">
+    <goods-indicator
       class="indicator"
       ref="indicator"
       :style="{ opacity: indicatorOapcity }"
-    ></goods-detail-indicator>
-    <div class="content">
-      <!-- <scroll-view
-      class="scroll-view-wrraper"
-      ref="scroll"
-      @scroll="onScroll"
-      @scrollToEnd="onScrollToEnd"
-      @beforeScrollStart="beforeScrollStart"
-    >  -->
-
-      <!-- <goods-slider :banners="goodsSliderBanner"></goods-slider> -->
+    ></goods-indicator>
+    <section class="content">
+      <goods-slider :banners="goodsSliderBanner"></goods-slider>
       <goods-activity :activity="goodsActivityInfo"></goods-activity>
-
       <goods-vip :vip="goodsVip"></goods-vip>
       <goods-intro-area :intro="goodsIntro"></goods-intro-area>
       <goods-resource-banner></goods-resource-banner>
       <goods-user-review></goods-user-review>
-      <goods-detail-area> </goods-detail-area>
       <goods-recommend></goods-recommend>
-      <p class="goodsInfo">{{ JSON.stringify(goodsInfo) }}</p>
-
-      <div style="color: red">{{ goodsName }}</div>
-      <div style="color: green">????</div>
-    </div>
-    <!-- </scroll-view>  -->
-  </div>
+      <goods-detail-area
+        v-if="detailHtmlLoaded"
+        :detailHtml="detailHtml"
+      ></goods-detail-area>
+    </section>
+    <goods-bottom-option class="bottom-option"></goods-bottom-option>
+  </section>
 </template>
 
 <script>
 import * as detailHttp from "network/goodsDetail.js";
-import GoodsDetailIndicator from "./child/GoodsDetailIndicator.vue";
+import GoodsIndicator from "./child/GoodsIndicator.vue";
 // import ScrollView from "components/ScrollView.vue";
 import GoodsSlider from "./child/GoodsSlider.vue";
 import GoodsActivity from "./child/GoodsActivity.vue";
@@ -44,10 +34,11 @@ import GoodsResourceBanner from "./child/GoodsResourceBanner.vue";
 import GoodsUserReview from "./child/GoodsUserReview.vue";
 import GoodsDetailArea from "./child/GoodsDetailArea.vue";
 import GoodsRecommend from "./child/GoodsRecommend.vue";
+import GoodsBottomOption from "./child/GoodsBottomOption.vue";
 
 export default {
   components: {
-    GoodsDetailIndicator,
+    GoodsIndicator,
     // ScrollView,
     GoodsSlider,
     GoodsActivity,
@@ -55,14 +46,17 @@ export default {
     GoodsIntroArea,
     GoodsResourceBanner,
     GoodsUserReview,
-    GoodsDetailArea,
     GoodsRecommend,
+    GoodsDetailArea,
+    GoodsBottomOption,
   },
   data() {
     return {
       goodsInfo: {},
       id: 20217,
       indicatorOapcity: 0.0,
+      detailHtml: "",
+      detailHtmlLoaded: false,
     };
   },
 
@@ -75,6 +69,16 @@ export default {
           console.log(this.goodsInfo);
         })
         .catch((err) => console.log(err));
+      // .then()
+      setTimeout(() => {
+        detailHttp
+          .getGoodsRichText(111)
+          .then((richText) => {
+            this.detailHtml = richText.data;
+            this.detailHtmlLoaded = true;
+          })
+          .catch((err) => console.log(err));
+      }, 200);
     },
 
     onContentScroll() {
@@ -137,17 +141,17 @@ export default {
       }
       return {};
     },
-     goodsIntro() {
+    goodsIntro() {
       if (this.goodsInfo.id) {
         return {
           name: this.goodsInfo.name,
           subName: this.goodsInfo.subName,
-          sales:this.goodsInfo.sales,
-          labels:this.goodsInfo.labels,
-          goodsTags:this.goodsInfo.goodsTags,
+          sales: this.goodsInfo.sales,
+          labels: this.goodsInfo.labels,
+          goodsTags: this.goodsInfo.goodsTags,
         };
       }
-      return null;
+      return {};
     },
   },
 
@@ -178,6 +182,7 @@ export default {
   position: absolute;
   overflow-x: hidden;
   overflow-y: scroll;
+  background-color: #fff;
 
   .indicator {
     z-index: 9;
@@ -188,6 +193,11 @@ export default {
   .goodsInfo {
     word-break: break-all;
     width: 100vw;
+  }
+
+  .bottom-option {
+    position: fixed;
+    bottom: 0rem;
   }
 }
 .goods::-webkit-scrollbar {

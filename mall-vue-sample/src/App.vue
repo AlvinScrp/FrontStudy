@@ -16,13 +16,12 @@ export default {
   components: {
     AppTabBar,
   },
- 
+
   created() {
     console.log("app.vue created ");
     // document.documentElement.style.overflow = "hidden";
     this.$router.afterEach((to, from) => {
       console.log(` inapp ${from.path}, ${to.path}`);
-      
     });
   },
   updated() {
@@ -39,11 +38,12 @@ export default {
 
 <style lang="less" scoped>
 @import "assets/css/base.css";
-@import "common/style.css";
+// @import "common/style.css";
 .router-container {
   position: absolute;
   top: 0px;
-  bottom: var(--tabbar-height);
+  bottom: 0px;
+  // bottom: var(--tabbar-height);
 }
 .app {
   position: absolute;
@@ -51,7 +51,5 @@ export default {
   right: 0;
   top: 0;
   bottom: 0;
- 
 }
-
 </style>

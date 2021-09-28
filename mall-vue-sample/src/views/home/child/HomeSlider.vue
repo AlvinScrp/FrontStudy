@@ -1,6 +1,10 @@
 <template>
   <div>
-    <slider :items="banners" :customStyle="customStyle()"></slider>
+    <slider
+      class="slider-wrapper"
+      :items="banners"
+      :customStyle="customStyle"
+    ></slider>
   </div>
 </template>
 

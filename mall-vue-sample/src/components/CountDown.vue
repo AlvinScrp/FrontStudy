@@ -1,11 +1,11 @@
 <template>
   <p class="count-down">
     <span class="number">{{ formatNumber(text.day) }}</span>
-    <span class="split">:</span>
+    <span class="number-split">:</span>
     <span class="number">{{ formatNumber(text.hour) }}</span>
-    <span class="split">:</span>
+    <span class="number-split">:</span>
     <span class="number">{{ formatNumber(text.minute) }}</span>
-    <span class="split">:</span>
+    <span class="number-split">:</span>
     <span class="number">{{ formatNumber(text.second) }}</span>
   </p>
 </template>
@@ -68,7 +68,7 @@ export default {
     border-radius: 0.03rem;
     border: 1px solid white;
   }
-  .split{
+  .number-split{
      display: inline-block;
       padding: 0.02rem;
   }

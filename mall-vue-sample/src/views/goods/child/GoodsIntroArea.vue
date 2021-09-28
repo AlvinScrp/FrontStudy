@@ -5,9 +5,19 @@
       <span class="sales">{{ fromatSales(intro.sales) }}</span>
     </div>
     <p class="sub-name">{{ intro.subName }}</p>
+    <div class="labels">
+      <span class="label" v-for="(label, index) in intro.labels" :key="index">
+        {{ label.labelName }}
+      </span>
+    </div>
     <div class="tags">
-      <span v-for="(tag, index) in intro.tags" :key="index">
-        {{ tag.tagName }}
+      <span
+        class="tag"
+        v-for="(goodsTag, index) in goodsTagsExtend"
+        :key="index"
+      >
+        <i class="iconfont mall-circle-right"></i>
+        {{ goodsTag.tagName }}
       </span>
     </div>
   </div>
@@ -23,7 +33,17 @@ export default {
   data() {
     return {};
   },
-  mounted() {},
+  mounted() {
+    console.log(`${JSON.stringify(this.intro)}`);
+  },
+  computed: {
+    goodsTagsExtend() {
+      let extendTags = [{ tagName: "假一赔十" }, { tagName: "权威检测" }];
+      if (this.intro.goodsTags) {
+        return [...extendTags, ...this.intro.goodsTags];
+      }
+    },
+  },
   methods: {
     fromatSales(value) {
       let valueStr =
@@ -36,9 +56,9 @@ export default {
 <style lang="less" scoped>
 .intro {
   margin-top: 0.12rem;
-  margin-left: 0.1rem;
 
   .name-container {
+    margin-left: 0.1rem;
     display: flex;
     justify-content: space-between;
     flex-wrap: nowrap;
@@ -73,15 +93,62 @@ export default {
     }
   }
   .sub-name {
+    margin-left: 0.1rem;
     margin-top: 0.06rem;
     margin-right: 0.1rem;
     font-family: "PingFangSC-Regular";
     color: #666;
     font-size: 0.14rem;
   }
-}
 
-.tags {
-  display: flex;
+  .labels {
+    display: flex;
+    margin-top: 0.05rem;
+    flex-wrap: wrap;
+
+    .label {
+      display: inline-block;
+      border-radius: 0.12rem;
+      line-height: 0.12rem;
+      font-size: 0.12rem;
+      height: 0.24rem;
+      background-color: #f3f5f7;
+      box-sizing: border-box;
+      padding: 0.06rem 0.1rem;
+      color: #999;
+      margin: 0.03rem 0.05rem;
+    }
+  }
+  .labels:after {
+    content: "";
+    height: 0.1rem;
+    width: 100%;
+    border-bottom: 0.01rem solid #f6f6f6;
+  }
+
+  .tags {
+    display: flex;
+    margin-top: 0.05rem;
+    flex-wrap: wrap;
+
+    .tag {
+      color: #666;
+      font-size: 0.12rem;
+      display: inline-block;
+      line-height: 0.2rem;
+      box-sizing: border-box;
+      height: 0.2rem;
+      margin: 0.08rem 0.1rem;
+
+      i {
+        display: inline-block;
+        font-size: 0.12rem;
+        margin-right: 0.05rem;
+        color: rgb(241, 98, 122);
+        vertical-align: middle;
+        margin-bottom: 0.02rem;
+      }
+    }
+  }
 }
 </style>

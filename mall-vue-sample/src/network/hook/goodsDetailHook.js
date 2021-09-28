@@ -1,8 +1,8 @@
-export const goodsDetailHook ={
+export const goodsDetailHook = {
   "id": 20217,
   "goodsId": 20217,
   "pictures": ["https://staticimg.ngmm365.com/0d817c62688962f5f203c70ba6d4cf81-w800_h800.jpg", "https://staticimg.ngmm365.com/b2a9368f0658dd6bd653ab4fa1678e29.jpg", "https://staticimg.ngmm365.com/2b0c8c1d564497052a82b5c50e31b71f.jpg"],
- 
+
   "categoryName": "食品／营养／茶饮-营养保健-D3",
   "systemTime": 1631687107901,
   "savePrice": 0,
@@ -49,9 +49,19 @@ export const goodsDetailHook ={
   },
   "remindState": 0,
   "labels": [{
-    "labelName": "跨境包税"
-  }],
-  
+    "labelName": "跨境包税",
+  },
+  {
+    "labelName": "正宗行货",
+  },
+  {
+    "labelName": "包甜",
+  },
+  {
+    "labelName": "坏果包赔",
+  },
+  ],
+
   "discountInfo": {
     "3": {
       "campaignGuide": "",
@@ -91,7 +101,7 @@ export const goodsDetailHook ={
     "id": 25632,
     "stock": 3884
   }],
-  
+
   "sellerCode": "ZH",
   "freightId": 10,
   "testStatus": 0,
@@ -104,8 +114,10 @@ export const goodsDetailHook ={
     "propOrderNo": 0,
     "propName": "年龄"
   }],
- 
+
   "category": "食品／营养／茶饮",
   "categoryId": 171211,
-  "haitaoMall": true
+  "haitaoMall": true,
+
+ 
 }
