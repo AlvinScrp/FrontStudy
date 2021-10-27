@@ -1,0 +1,100 @@
+<template>
+	<view class="count-down">
+		<text class="number">{{ formatNumber(text.day) }}</text>
+		<text class="number-split">:</text>
+		<text class="number">{{ formatNumber(text.hour) }}</text>
+		<text class="number-split">:</text>
+		<text class="number">{{ formatNumber(text.minute) }}</text>
+		<text class="number-split">:</text>
+		<text class="number">{{ formatNumber(text.second) }}</text>
+	</view>
+</template>
+
+<script>
+	export default {
+		props: {
+			endTime: {
+				type: Number,
+				required: true,
+				default: 0,
+			},
+		},
+		data() {
+			return {
+				text: {
+					day: 0,
+					hour: 0,
+					minute: 0,
+					second: 0
+				},
+			};
+		},
+		methods: {
+			startTimer() {
+				this.stopTimer();
+				this.playerTimer = setInterval(() => {
+					let now = new Date().getTime();
+					let time = (this.endTime - now) / 1000;
+					let day = time / 86400;
+					let hour = (time % 86400) / 3600;
+					let minute = (time % 3600) / 60;
+					let second = time % 60;
+					this.text = {
+						day,
+						hour,
+						minute,
+						second
+					};
+					this.text.day = day
+					this.text.hour = hour
+					this.text.minute = minute
+					this.text.second = second
+					console.log(this.text);
+				}, 1000);
+			},
+			stopTimer() {
+				clearInterval(this.playerTimer);
+			},
+			formatNumber(number) {
+				if (!number) return "";
+				let value = Math.floor(number);
+				return (value < 10 ? "0" : "") + value;
+			},
+		},
+		mounted() {
+			setTimeout(() => this.startTimer());
+		},
+		// watch: {
+		//   leaveTime() {
+		//     this.startTimer();
+		//   },
+		// },
+	};
+</script>
+<style lang="less" scoped>
+	.count-down {
+		flex-direction: row;
+
+		align-items: center;
+
+		.number {
+			width: 46rpx;
+			height: 46rpx;
+			color: white;
+			font-size: 26rpx;
+			display: inline-block;
+			border-radius: 6rpx;
+			text-align: center;
+			line-height: 42rpx;
+			border: 2rpx solid white;
+		}
+
+		.number-split {
+			color: white;
+			font-size: 26rpx;
+			line-height: 46rpx;
+			margin-left: 4rpx;
+			margin-right: 4rpx;
+		}
+	}
+</style>

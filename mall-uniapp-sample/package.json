@@ -1,0 +1,41 @@
+{
+  "id": "mall-uniapp-sample",
+  "name": "mall-uniapp-sample",
+  "displayName": "商城",
+  "version": "0.0.1",
+  "description": "用uni-app写一个简单的商城",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "uni-app": {
+    "scripts": {
+      "mp-dingtalk": {
+        "title": "钉钉小程序",
+        "env": {
+          "UNI_PLATFORM": "mp-alipay"
+        },
+        "define": {
+          "MP-DINGTALK": true
+        }
+      },
+      "browser": {
+        "title": "自定义浏览器",
+        "BROWSER": "Chrome",
+        "env": {
+          "UNI_PLATFORM": "h5"
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "@dcloudio/uni-helper-json": "^1.0.13"
+  },
+  "main": "main.js",
+  "devDependencies": {
+    "@types/html5plus": "^1.0.2",
+    "@types/uni-app": "^1.4.4"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

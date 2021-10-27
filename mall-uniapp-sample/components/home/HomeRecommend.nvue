@@ -1,0 +1,67 @@
+<template>
+  <div class="recommend-container">
+    <a
+      class="recommend-item"
+      v-for="(recommend, index) in recommends"
+      :key="index"
+      :href="recommend.link"
+    >
+		<!--  -->
+      <image class="image" :src="recommend.image" :alt="recommend.title" />
+      <view>
+        <text class="title">{{ recommend.title }}</text>
+      </view>
+    </a>
+  </div>
+</template>
+
+<script lang="js">
+export default {
+  data() {
+    return {};
+  },
+  props: {
+    recommends: {
+      type: Array,
+         required: true,
+    },
+  },
+  methods: {},
+};
+</script>
+<style lang="less" scoped>
+.recommend-container {
+	background-color: #ffffff;
+  display: flex;
+	flex-direction: row;
+  padding-left: 15rpx;
+	height: 260rpx;
+
+	
+	.recommend-item {
+		margin-top: 20rpx;
+		margin-bottom: 20rpx;
+	  width: 180rpx;
+		height: 220rpx;
+	  text-align: center;
+		display: flex;  
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		  text-decoration: none;
+		
+		.image {
+		  width: 157rpx;
+		  height: 157rpx;
+			
+		}
+		
+		 .title {
+		  padding-top: 15rpx;
+		  font-size: 13px;
+		  color: #939393;
+			
+		}
+	}
+}
+</style>

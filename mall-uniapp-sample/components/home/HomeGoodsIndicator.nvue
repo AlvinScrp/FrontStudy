@@ -1,0 +1,58 @@
+<template>
+  <view>
+    <custom-indicator
+      :items="itemsOnShow()"
+      @indicator-click="onItemClick"
+      :currentIndex="currentIndex()"
+    ></custom-indicator>
+  </view>
+</template>
+
+<script lang="js">
+import CustomIndicator from "../base/CustomIndicator.nvue";
+export default {
+  props: {
+    goodsTypeInfos: {
+      type: Array,
+    },
+    currentGoodsType: {
+      type: String,
+      required: true,
+      default: "pop",
+    },
+  },
+  components: { CustomIndicator },
+
+  data() {
+    return {
+			
+		};
+  },
+
+  methods: {
+    currentIndex() {
+      return this.goodsTypeInfos.findIndex(
+        (info) => info.type === this.currentGoodsType
+      );
+    },
+
+    itemsOnShow() {
+      let items = this.goodsTypeInfos.map((info) => ({ label: info.label }));
+      return items;
+    },
+    onItemClick(index) {
+      this.$emit("indicator-click", this.goodsTypeInfos[index]);
+    },
+  },
+	created(){
+	
+
+		
+	},
+	destroyed(){
+		
+	}
+};
+</script>
+<style lang="less"  scoped>
+</style>

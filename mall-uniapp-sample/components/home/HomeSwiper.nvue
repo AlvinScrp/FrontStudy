@@ -1,0 +1,59 @@
+<template>
+  <view>
+    <swiper
+      class="swiper"
+      :indicator-dots="true"
+      :indicator-active-color="customStyle.indicatorColorActive"
+      :indicator-color="customStyle.indicatorColor"
+      :autoplay="false"
+      :interval="2000"
+      :duration="500"
+      :circular="true"
+			
+    >
+      <swiper-item
+        class="swiper-item"
+        v-for="(item, index) in items"
+        :key="index"
+      >
+        <image class="image" :src="item.image" :alt="item.title" />
+      </swiper-item>
+    </swiper>
+		 <!-- <image class="ss" :src="items[0].image" :alt="items[0].title" mode= "scaleToFill" /> -->
+  </view>
+</template>
+
+<script lang="js">
+export default {
+  props: {
+    items: {
+      type: Array,
+         required: true,
+    },
+  },
+
+  data() {
+    return {
+      customStyle: {
+        indicatorColorActive: "#f7615b",
+        indicatorColor: "#999999",
+        size: 8,
+      },
+    };
+  },
+};
+</script>
+
+<style lang="less" scoped>
+.swiper {
+	width: 750rpx;
+	height: 235rpx;
+	.swiper-item {
+		.image {
+			width: 750rpx;
+			height: 235rpx;
+		}
+	}
+}
+
+</style>

@@ -1,0 +1,213 @@
+<template>
+	<view>
+		<home-goods-indicator class="top-indicator" ref="topGoodsIndicator" :goodsTypeInfos="goodsTypeInfos"
+			:style="{ opacity: indicatorOapcity }" :currentGoodsType="currentGoodsType"
+			@indicator-click="goodsIndicatorItemClick">
+		</home-goods-indicator>
+
+
+		<view class="content" ref="content">
+			<home-swiper ref="banners" :items="banners"> </home-swiper>
+			<home-recommend id="recommend" ref="recommned" :recommends="recommends"> </home-recommend>
+			<home-goods-indicator id="goods-indicator" class="content-indicator" ref="contentGoodsIndicator"
+				:goodsTypeInfos="goodsTypeInfos" :currentGoodsType="currentGoodsType"
+				@indicator-click="goodsIndicatorItemClick"></home-goods-indicator>
+			<goods-feed ref="goodsFeed" v-if="showGoodsFeed" :currentGoodsType="currentGoodsType"
+				:goodsList="goodsOnShow">
+			</goods-feed>
+		</view>
+
+	</view>
+</template>
+
+<script lang="js">
+	import {
+		POP,
+		NEW,
+		SELL
+	} from "../../common/const.js";
+	import HomeSwiper from "../../components/home/HomeSwiper.nvue";
+	import HomeRecommend from "../../components/home/HomeRecommend.nvue";
+	import HomeGoodsIndicator from "../../components/home/HomeGoodsIndicator.nvue";
+	import GoodsFeed from "../../components/home/GoodsFeed.nvue"
+	import * as homeHttp from "../../network/home.js";
+	export default {
+		components: {
+			HomeSwiper,
+			HomeRecommend,
+			HomeGoodsIndicator,
+			GoodsFeed
+		},
+		data() {
+			return {
+				banners: [],
+				recommends: [],
+				goodsTypeInfos: [{
+						type: POP,
+						label: "流行",
+						index: 0,
+					},
+					{
+						type: NEW,
+						label: "最新",
+						index: 1,
+					},
+					{
+						type: SELL,
+						label: "精选",
+						index: 2,
+					},
+				],
+				goods: {
+					[POP]: {
+						page: 0,
+						list: [],
+					},
+					[NEW]: {
+						page: 0,
+						list: [],
+					},
+					[SELL]: {
+						page: 0,
+						list: [],
+					},
+				},
+				currentGoodsType: POP,
+				indicatorOapcity: 0.0,
+				tabOffsetTop: 0,
+				showGoodsFeed: true,
+			};
+		},
+
+		methods: {
+			gotoGoodsDetail() {
+				console.log("goto goods detail");
+				uni.navigateTo({
+					url: "/pages/goodsDetail/goodsDetail",
+				});
+			},
+			loadHomeData() {
+				homeHttp
+					.loadHomeData()
+					.then((res) => {
+						this.banners = res.data.banner.list;
+						this.recommends = res.data.recommend.list;
+						// console.log(this.banners);
+					})
+					.catch((err) => console.log(Error));
+			},
+			goodsIndicatorItemClick(goodsTypeInfo) {
+				this.currentGoodsType = goodsTypeInfo.type;
+				this.loadGoods(true);
+			},
+			loadGoods(refreshDom) {
+				let goodsType = this.currentGoodsType;
+				let page = this.goods[goodsType].page;
+
+
+				console.log(`goodsType:${goodsType}`)
+
+				if (refreshDom) {
+					// #ifdef APP-NVUE
+					const dom = uni.requireNativePlugin('dom')
+					dom.scrollToElement(this.$refs.goodsFeed, {
+						offset: -40,
+						animated: false
+					})
+					// #endif
+					// #ifndef APP-NVUE
+					uni.pageScrollTo({
+						scrollTop: this.tabOffsetTop,
+						duration: 1
+					})
+					// #endif
+
+				}
+				homeHttp
+					.getGoodsData(goodsType, page)
+					.then((res) => {
+						if (res) {
+							this.goods[goodsType].page++;
+							this.goods[goodsType].list.push(...res);
+						}
+					})
+					.catch((err) => console.log(err));
+			},
+
+		},
+		computed: {
+			goodsOnShow() {
+				if (this.goods && this.goods[this.currentGoodsType]) {
+					return this.goods[this.currentGoodsType].list;
+				}
+				return [];
+			},
+		},
+
+
+
+		onShow() {
+			this.loadHomeData();
+			this.loadGoods();
+
+		},
+		onHide() {
+
+		},
+		onReachBottom() {
+			console.log("on reach bottom")
+			this.loadGoods();
+		},
+		onPageScroll({
+			scrollTop
+		}) {
+			// console.log(`onPageScroll:${scrollTop}`)
+			if (this.tabOffsetTop > 0) {
+				const opacity = scrollTop >= this.tabOffsetTop ? 1.0 : 0.0
+				// console.log(`${opacity} ,${this.indicatorOapcity}`)
+				if (opacity !== this.indicatorOapcity) {
+					this.indicatorOapcity = opacity
+					// console.log(`opacity:${this.indicatorOapcity}`)
+				}
+			}
+		},
+
+		mounted() {
+			uni.createSelectorQuery().select('#goods-indicator').boundingClientRect((res) => {
+				//   console.log("goods-indicator:")
+				console.log(res)
+				this.tabOffsetTop = res.top
+			}).exec()
+		},
+		onLoad() {
+			// #ifdef APP-NVUE
+			uni.$on("indicatorclick", index => {
+				const goodsTypeInfo = this.goodsTypeInfos[index]
+				this.goodsIndicatorItemClick(goodsTypeInfo)
+			})
+			// #endif
+		},
+		onUnload() {
+			// #ifdef APP-NVUE
+			uni.$off("indicatorclick")
+			// #endif
+		}
+
+	};
+</script>
+
+<style lang="less" scoped>
+	.top-indicator {
+		position: fixed;
+		z-index: 9;
+	}
+
+	.content {
+
+
+		.content-indicator {
+			position: sticky;
+			top: 0rpx;
+		}
+	}
+</style>

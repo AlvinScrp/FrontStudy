@@ -1,0 +1,146 @@
+<template>
+	<view class="goods-container">
+		<view class="goods-item" v-for="(goods, index) in goodsList" :key="index">
+			<image class="goods-cover" :src="goods.image" alt="" />
+			<text @click="itemClick(goods)" class="title1">{{ goods.title1 }}</text>
+			<text class="title2">{{ goods.title2 }}</text>
+			<div class="bottom">
+				<view class="price-container">
+					<text class="price-label">￥</text>
+					<text class="price">{{ priceFormat(goods) }}</text>
+				</view>
+				<image class="shopcart" src="../../static/img/common/icon_shopcart.png" />
+			</div>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {};
+		},
+		props: {
+			currentGoodsType: {
+				type: String,
+				required: true,
+				default: "pop",
+			},
+			goodsList: {
+				type: Array,
+				default () {
+					return [];
+				},
+			},
+		},
+		methods: {
+			priceFormat(goods) {
+				return `${goods.sellPrice / 100.0}`;
+			},
+			itemClick(goods) {
+				// this.$router.push({ path: "/goods" });
+				// uni.showToast({ 
+				// 	title:goods.title1
+				// })
+							console.log(goods)
+	
+				uni.navigateTo({
+					url:`../../pages/goodsDetail/goodsDetail?goodsId=${goods.goodsId}`
+				})
+			},
+		},
+	};
+</script>
+<style lang='less' scoped>
+	.goods-container {
+		background-color: #f6f8fb;
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: row;
+		padding: 20rpx;
+		justify-content: space-between;
+	}
+
+	.goods-item {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 20rpx;
+		background-color: white;
+		width: 345rpx;
+		height: 517rpx;
+		border-radius: 16rpx;
+
+		.goods-cover {
+			width: 345rpx;
+			height: 345rpx;
+		}
+
+		.title1 {
+			margin: 8rpx 20rpx;
+			font-size: 28rpx;
+			line-height: 28rpx;
+			height: 28rpx;
+			color: #212121;
+			font-weight: 500;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			lines: 1;
+			/* #ifndef APP-NVUE */
+			white-space: nowrap;
+			/* #endif */
+		}
+
+
+		.title2 {
+			margin: 8rpx 20rpx;
+			font-size: 24rpx;
+			line-height: 24rpx;
+			height: 24rpx;
+			color: #939393;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			lines: 1;
+			/* #ifndef APP-NVUE */
+			white-space: nowrap;
+			/* #endif */
+
+		}
+
+		.bottom {
+			width: 345rpx;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+
+			.price-container {
+				display: flex;
+				flex-direction: row;
+				margin-left: 16rpx;
+				align-items: flex-end;
+
+			}
+
+			.price-label {
+				font-weight: 500;
+				color: #ff0000;
+				font-size: 20rpx;
+				padding-bottom: 2rpx;
+			}
+
+			.price {
+				font-weight: 500;
+				color: #ff0000;
+				font-size: 32rpx;
+
+			}
+
+			.shopcart {
+				right: 16rpx;
+				width: 68rpx;
+				height: 68rpx;
+				padding: 10rpx;
+			}
+		}
+	}
+</style>

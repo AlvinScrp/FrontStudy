@@ -1,0 +1,110 @@
+<template>
+	<div class="activity">
+		<div class="left">
+			<text class="price-label">{{ activity.activityLabel }}</text>
+			<view class="price-container">
+				<text class="dollar">¥</text>
+				<text class="sellPrice">{{ formatPrice(activity.sellPrice) }}&nbsp;</text>
+				<text class="originSellPrice">{{ formatPrice(activity.originSellPrice, true) }}</text>
+			</view>
+		</div>
+		<div class="right">
+			<text class="count-down-title">距结束</text>
+			<count-down :endTime="activity.activityEndTime"></count-down>
+		</div>
+	</div>
+</template>
+
+<script>
+	import CountDown from "../base/CountDown.nvue";
+	export default {
+		components: {
+			CountDown
+		},
+		props: {
+			activity: {
+				type: Object,
+			},
+		},
+		data() {
+			return {};
+		},
+
+		methods: {
+			formatPrice(price, withDollar = false) {
+				return (withDollar ? "¥" : "") + `${price / 100.0}`;
+			},
+		},
+	};
+</script>
+<style lang="less" scoped>
+	.activity {
+		width: 750rpx;
+		height: 100rpx;
+		background: linear-gradient(90deg, #f44, #f26);
+		border-radius: 20rpx;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		padding-left: 30rpx;
+		padding-right: 30rpx;
+		/* #ifndef APP-PLUS-NVUE */
+		padding-top: 4rpx;
+		/* #endif*/
+		/* #ifdef APP-PLUS-NVUE */
+		padding-top: 6rpx;
+		/* #endif*/
+		/* #ifndef APP-PLUS-NVUE */
+		box-sizing: border-box;
+		/* #endif*/
+
+		.left {
+
+			flex-direction: column;
+
+			.price-label {
+				font-size: 24rpx;
+				color: #ffffff;
+			}
+
+			.price-container {
+				margin-bottom: 10rpx;
+				align-items: center;
+				flex-direction: row;
+
+				.dollar {
+					margin-top: 8rpx;
+					font-size: 26rpx;
+					color: white;
+				}
+
+				.sellPrice {
+					font-size: 48rpx;
+					line-height: 48rpx;
+					color: white;
+					font-weight: 700;
+				}
+
+				.originSellPrice {
+					margin-top: 12rpx;
+					margin-left: 20rpx;
+					font-size: 20rpx;
+					color: white;
+					opacity: 0.8;
+					text-decoration: line-through;
+				}
+			}
+		}
+
+		.right {
+			flex-direction: column;
+			align-items: flex-end;
+			.count-down-title {
+				color: white;
+				font-size: 24rpx;
+				text-align: right;
+			}
+		}
+
+	}
+</style>

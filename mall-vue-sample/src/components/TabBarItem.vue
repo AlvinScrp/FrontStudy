@@ -31,6 +31,6 @@ export default {
   font-size: 11px;
 }
 .active {
-  color: #ff5777;
+  color: #fce9ed;
 }
 </style>
