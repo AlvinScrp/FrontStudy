@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>2.2.1vdom-vnode</title>
+</head>
+
+<body>
+  <div>
+    2.2.1vdom-vnode:
+    <div id="app">
+    </div>
+  </div>
+  <script type="module">
+    import Vue from "../src/core/index.js"
+    let vm = new Vue(
+      {
+        el: "#app",
+        data: { a: 1 },
+        render: function (h) {
+          window._vm = this
+          let vnode1 = h("h1", {}, "vnode1");
+          let vnode2 = h("")
+          vnode2.text = "这是注释vnode2"
+          let vnode3 = h("h3", {}, "vnode3");
+          let vnode4 = h('div', {}, [h('h4', {}, ["vnode4"])])
+          return h('div', { attrs: { "id": "app" } }, [vnode1, vnode2, vnode3, vnode4, "vnode5"])
+        },
+      }
+    )
+    window.vm = vm;
+    console.log(vm)
+    console.log(_vm)
+
+    setTimeout(() => {
+      vm.$options.render = function (h) {
+        window._vm = this
+        let vnode1 = h("h1", {}, "vnode1patch");
+        let vnode2 = h("")
+        vnode2.text = "这是注释vnode2patch"
+        let vnode3 = h("h3", {}, "vnode3patch");
+        let vnode4 = h('div', {}, [h('h4', {}, ["vnode4patch"])])
+        return h('div', { attrs: { "id": "app" } }, [vnode1, vnode2, vnode3, vnode4, "vnode5patch"])
+      };
+      console.log("update-----------------------")
+      let time1 = new Date().getTime();
+      for (let i = 0; i < 10000; i++) {
+
+        vm.$update()
+      }
+      let time2 = new Date().getTime();
+      console.log(`update-cost : ${time2 - time1}`)
+
+    }, 2000);
+
+  </script>
+
+
+</body>
+
+</html>

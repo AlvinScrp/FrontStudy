@@ -1,0 +1,26 @@
+{
+  "name": "what-in-vue",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test2": "node 2-real/src/test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.0.0",
+    "eslint-config-vue": "^2.0.2",
+    "eslint-plugin-flowtype": "^6.1.0",
+    "eslint-plugin-html": "^6.2.0",
+    "eslint-plugin-vue": "^2.1.0",
+    "flow-bin": "^0.161.0",
+    "flowtype": "^2.0.0"
+  },
+  "dependencies": {
+    "vue": "^2.6.14"
+  }
+}

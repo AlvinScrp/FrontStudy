@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+  <script>
+    // function Person() { }
+    // let Person = function () { }
+    let Person = function () {
+      this.namexx = "sdsd"
+    }
+    Person.prototype.age = 13
+
+    let p = new Person()
+
+    console.log(p.prototype)
+
+    console.log(p.__proto__)
+    console.log(Person.prototype)
+    console.log(Object.getPrototypeOf(p))
+    // console.log(p.__proto__.prototype)
+    // console.log(p.prototype.__proto__)
+
+    console.log(Object.create(Person.prototype).age)
+
+    console.log(Array.prototype)
+  </script>
+</body>
+
+</html>

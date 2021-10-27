@@ -1,0 +1,49 @@
+<script src="../node_modules/vue/dist/vue.js"></script>
+
+<div id="app">
+  <!-- {{a.scores}} -->
+</div>
+
+<script>
+  // 
+  let data = {
+    a: {
+      b: { c: 1 },
+      // items: [1, 2, 3],
+      scores: [{ name: "math", value: 101 }]
+    }
+  }
+
+  const vm = new Vue({
+    el: '#app',
+    data,
+    render: function (h) {
+      var _vm = this;
+      console.log(_vm)
+      window._vm = _vm
+      window._vm = this
+      // let vnode1 = _vm._v(" " + _vm._s(_vm.a.scores))
+      let vnode1 = h("h1", {}, "vnode1");
+      let vnode2 = h("")
+      vnode2.text = "这是注释vnode2"
+      let vnode3 = h("h3", {}, "vnode3");
+      let vnode4 = h('div', {}, [h('h4', {}, ["vnode4"])])
+      let vnode6 = h("div", {}, "heheheheee");
+      vnode6.text = "vnode6"
+      return h('div', { attrs: { "id": "app" } }, [vnode1, vnode2, vnode3, vnode4, "vnode5", vnode6])
+
+      return vnode6
+    },
+    beforeUpdate() {
+      console.log("beforeUpdate")
+    },
+
+  })
+  setTimeout(() => {
+    data.a.scores[0].value = 102
+    // data.a.b.c = 3
+    // document.querySelector("#app").appendChild(document.createTextNode("sdsdsds"))
+  }, 1000);
+
+
+</script>
