@@ -6,12 +6,7 @@
 		// 		"navigationBarTitleText": "uni-app"
 		// 	}
 		// },
-		{
-			"path":"pages/goodsDetail/goodsDetail",
-			"style": {
-				"navigationBarTitleText": "商品详情"
-			}
-		},
+		
 		{
 			"path": "pages/home/home",
 				"style": {
@@ -26,6 +21,12 @@
 		},
 		{
 			"path":"pages/profile/profile"
+		},
+		{
+			"path":"pages/goodsDetail/goodsDetail",
+			"style": {
+				"navigationBarTitleText": "商品详情"
+			}
 		}
 		
 	],

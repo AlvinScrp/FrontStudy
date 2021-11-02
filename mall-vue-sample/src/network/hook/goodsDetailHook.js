@@ -22,7 +22,7 @@ export const goodsDetailHook = {
   activityId: 100016889,
   activityLabel: "活动价",
   activityStatus: 1,
-  activityEndTime: 1633017600000,
+  activityEndTime: 1643203251000,
   secKill: false,
 
   stock: 3884,

@@ -2,19 +2,22 @@
 	<view class="goods" ref="goods">
 		<goods-indicator class="indicator" ref="indicator" :style="{ opacity: indicatorOapcity }"></goods-indicator>
 		<view class="content">
-			<goods-slider :banners="goodsSliderBanner"></goods-slider>
-			<goods-activity :activity="goodsActivityInfo"></goods-activity>
+		<goods-slider :banners="goodsSliderBanner"></goods-slider>
+			<goods-activity :activity="goodsActivityInfo"></goods-activity> 
 			<goods-vip :vip="goodsVip"></goods-vip>
-     <!-- <goods-intro-area :intro="goodsIntro"></goods-intro-area>
+    <goods-intro-area :intro="goodsIntro"></goods-intro-area>
       <goods-resource-banner></goods-resource-banner>
-      <goods-user-review></goods-user-review>
-      <goods-recommend></goods-recommend>
-      <goods-detail-area
+    <goods-user-review></goods-user-review> 
+	
+    <goods-recommend></goods-recommend>
+	
+     <goods-detail-area
+		 ref="goodsDetailArea"
         v-if="detailHtmlLoaded"
         :detailHtml="detailHtml"
-      ></goods-detail-area> -->
+      ></goods-detail-area> 
 		</view>
-		<!-- <goods-bottom-option class="bottom-option"></goods-bottom-option> -->
+		<goods-bottom-option class="bottom-option"></goods-bottom-option>
 	</view>
 </template>
 
@@ -24,12 +27,13 @@
 	import GoodsSlider from "../../components/goodsDetail/GoodsSlider.nvue";
 	import GoodsActivity from "../../components/goodsDetail/GoodsActivity.nvue";
 	import GoodsVip from "../../components/goodsDetail/GoodsVip.nvue";
-	import GoodsIntroArea from "../../components/goodsDetail/GoodsIntroArea.vue";
-	import GoodsResourceBanner from "../../components/goodsDetail/GoodsResourceBanner.vue";
-	import GoodsUserReview from "../../components/goodsDetail/GoodsUserReview.vue";
-	import GoodsDetailArea from "../../components/goodsDetail/GoodsDetailArea.vue";
-	import GoodsRecommend from "../../components/goodsDetail/GoodsRecommend.vue";
+	import GoodsIntroArea from "../../components/goodsDetail/GoodsIntroArea.nvue";
+	import GoodsResourceBanner from "../../components/goodsDetail/GoodsResourceBanner.nvue";
+	import GoodsUserReview from "../../components/goodsDetail/GoodsUserReview.nvue";
+	import GoodsRecommend from "../../components/goodsDetail/GoodsRecommend.nvue";
+	import GoodsDetailArea from "../../components/goodsDetail/GoodsDetailArea.nvue";
 	import GoodsBottomOption from "../../components/goodsDetail/GoodsBottomOption.vue";
+
 
 	export default {
 		components: {
@@ -63,7 +67,7 @@
 			return {
 				goodsInfo: {},
 				id: 20217,
-				indicatorOapcity: 0.5,
+				indicatorOapcity: 0.1,
 				detailHtml: "",
 				detailHtmlLoaded: false,
 			};
@@ -107,7 +111,6 @@
 			},
 			goodsSliderBanner() {
 				var name = this.goodsInfo.name;
-				console.log(`pictures: ${this.goodsInfo.pictures}`);
 				if (this.goodsInfo.pictures) {
 					return this.goodsInfo.pictures.map((pic) => ({
 						image: pic,
@@ -212,7 +215,8 @@
 
 		.bottom-option {
 			position: fixed;
-			bottom: 0rpx;
+			bottom: -1rpx;
+			  z-index: 99;
 		}
 	}
 

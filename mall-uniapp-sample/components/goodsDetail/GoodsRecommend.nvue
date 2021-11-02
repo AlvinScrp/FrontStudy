@@ -1,0 +1,161 @@
+<template>
+	<view class="recommond">
+		<view class="split"></view>
+		<text class="label">为你推荐</text>
+		<scroll-view show-scrollbar="false" scroll-x="true" scroll-y="false" class="scroll">
+			<!-- <view class="swiper" :options="swiperOption"> -->
+			<view style="display: flex; flex-direction: row;">
+				<view class="scroll-item" v-for="(recommond, index) in recommonds" :key="recommond.id">
+					<image class="recommond-image" :src="recommond.imageUrl" alt="" />
+					<text class="intro">{{ recommond.intro }}</text>
+					<view class="price">
+						<text class="sell-price">{{ formatPrice(recommond.sellPrice, true) }}</text>
+						<text class="original-price"
+							v-if="showOriginalPrice(recommond)">{{ formatPrice(recommond.originalPrice, true) }}</text>
+					</view>
+				</view>
+			</view>
+			<!-- </view> -->
+		</scroll-view>
+	</view>
+</template>
+
+<script>
+	export default {
+		props: {
+			recommonds: {
+				type: Array,
+				default () {
+					return [{
+							imageUrl: "https://staticimg.ngmm365.com/a88539d549d1208afbace1d04d6b08b1-w800_h800.jpg",
+							intro: "Ddrops维生素D3滴剂婴儿版*2瓶15天+ ",
+							sellPrice: 19200,
+							originalPrice: 19900,
+						},
+						{
+							imageUrl: "https://staticimg.ngmm365.com/5648b1b5bde466e49d6864650569bf0e-w1024_h1024.jpg",
+							intro: "小小伞维生素D3 8ml/瓶 ",
+							sellPrice: 9900,
+							originalPrice: 12900,
+						},
+						{
+							imageUrl: "https://staticimg.ngmm365.com/c290a216db6488ae6cc1c71c6b42d0aa-w800_h800.jpg",
+							intro: "【2瓶】Ostelin奥斯特林维D滴剂 20ml 6m+ ",
+							sellPrice: 6900,
+							originalPrice: 69000,
+						},
+						{
+							imageUrl: "https://staticimg.ngmm365.com/2e09cf34201c002335dcf1a7c9edb360-w800_h800.jpg",
+							intro: "小澳特力软糖3g/粒×45粒/瓶 ",
+							sellPrice: 3900,
+							originalPrice: 4900,
+						},
+						{
+							imageUrl: "https://staticimg.ngmm365.com/973dbe117f1957a7f7d8d0c30f03a8a5-w800_h800.jpg",
+							intro: "D-CAL/迪巧小黄条婴幼儿液体钙 10ml*20条/盒",
+							sellPrice: 19200,
+							originalPrice: 19900,
+						},
+						{
+							imageUrl: "https://staticimg.ngmm365.com/fa379563f8815b9d10ca5e437a5b9f5b-w800_h800.jpg",
+							intro: " Swisse K2钙维生素D骨骼片 90片/瓶 ",
+							sellPrice: 19900,
+							originalPrice: 19900,
+						},
+					];
+				},
+			},
+		},
+		components: {
+			// Swiper,
+			// SwiperSlide,
+		},
+		data() {
+			return {};
+		},
+		computed: {
+			// swiper() {
+			//   return this.$refs.mySwiper.swiper;
+			// },
+		},
+		methods: {
+			showOriginalPrice(recommond) {
+				return recommond.sellPrice < recommond.originalPrice
+			},
+
+			formatPrice(price, withDollar = false) {
+				return (withDollar ? "¥" : "") + `${price / 100.0}`;
+			},
+		},
+		mounted() {
+			// this.swiper.slideTo(3, 1000, false);
+		},
+	};
+</script>
+<style lang="less" scoped>
+	.recommond {
+		display: flex;
+		flex-direction: column;
+
+		.split {
+			background-color: #f6f6f6;
+			width: 750rpx;
+			height: 30rpx;
+		}
+
+		.label {
+			margin: 20rpx;
+			font-size: 26rpx;
+			color: #666;
+		}
+		
+		.scroll {
+			width: 750rpx;
+			flex-direction: row;
+			margin-left: 16rpx;
+
+
+			.scroll-item {
+				display: flex;
+				flex-direction: column;
+				width: 216rpx;
+				padding-bottom: 20rpx;
+
+				.recommond-image {
+					width: 200rpx;
+					height: 200rpx;
+				}
+
+				.intro {
+					margin-top: 6rpx;
+					padding-left: 16rpx;
+					padding-right: 16rpx;
+					font-size: 24rpx;
+					color: #333;
+					width: 214rpx;
+					lines: 1;
+					text-overflow: ellipsis;
+					overflow: hidden;
+				}
+
+				.price {
+					padding-left: 16rpx;
+					margin-top: 14rpx;
+					flex-direction: row;
+					display: flex;
+
+					.sell-price {
+						font-size: 24rpx;
+						color: #ff2266;
+					}
+
+					.original-price {
+						font-size: 24rpx;
+						color: #666666;
+						text-decoration: line-through;
+					}
+				}
+			}
+		}
+	}
+</style>

@@ -1,0 +1,165 @@
+<template>
+	<view class="intro">
+		<view class="name-container">
+			<text class="name">{{ intro.name }}</text>
+			<text class="sales">{{ fromatSales(intro.sales) }}</text>
+		</view>
+		<text class="sub-name">{{ intro.subName }}</text>
+		<view class="labels">
+			<view class="label" v-for="(label, index) in intro.labels" :key="index">
+				<text class="lable-text"> {{ label.labelName }}</text>
+
+			</view>
+		</view>
+		<view class="labels-bottom-line">
+		</view>
+		<view class="tags">
+			<view class="tag" v-for="(goodsTag, index) in goodsTagsExtend" :key="index">
+				<image class="icon-cicle-right" src="../../static/img/goodsdetail/icon_cicle_right.png" mode=""></image>
+				<text class="tag-text"> {{ goodsTag.tagName }}</text>
+				<!-- <i class="iconfont mall-circle-right"></i> -->
+
+
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		props: {
+			intro: {
+				type: Object,
+			},
+		},
+		data() {
+			return {};
+		},
+		mounted() {
+			console.log(`${JSON.stringify(this.intro)}`);
+		},
+		computed: {
+			goodsTagsExtend() {
+				let extendTags = [{
+					tagName: "假一赔十"
+				}, {
+					tagName: "权威检测"
+				}];
+				if (this.intro.goodsTags) {
+					return [...extendTags, ...this.intro.goodsTags];
+				}
+			},
+		},
+		methods: {
+			fromatSales(value) {
+				let valueStr =
+					value > 10000 ? `${(value / 10000.0).toFixed(1)}万` : `${value}`;
+				return `已售${valueStr}`;
+			},
+		},
+	};
+</script>
+<style lang="less" scoped>
+	.intro {
+		margin-top: 24rpx;
+
+		.name-container {
+			margin-left: 20rpx;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			flex-wrap: nowrap;
+
+			.name {
+				height: 44rpx;
+				line-height: 44rpx;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				color: #222;
+				font-size: 34rpx;
+				font-weight: 700;
+			}
+
+			.sales {
+				margin-left: 20rpx;
+				line-height: 44rpx;
+				height: 44rpx;
+				border-radius: 20rpx 0 0 20rpx;
+				color: #ee8e93;
+				font-size: 24rpx;
+				padding: 0 20rpx 0 12rpx;
+				background-color: rgba(255, 79, 88, 0.06);
+			}
+		}
+
+		.sub-name {
+			margin-left: 20rpx;
+			margin-top: 12rpx;
+			margin-right: 20rpx;
+			color: #666;
+			font-size: 28rpx;
+		}
+
+		.labels {
+			display: flex;
+			flex-direction: row;
+			margin-top: 10rpx;
+			flex-wrap: wrap;
+
+			.label {
+				border-radius: 24rpx;
+
+				height: 48rpx;
+				background-color: #f3f5f7;
+				padding: 12rpx 20rpx;
+
+				margin: 6rpx 10rpx;
+
+				.lable-text {
+					line-height: 24rpx;
+					font-size: 24rpx;
+					color: #999;
+				}
+			}
+		}
+
+		.labels-bottom-line {
+			height: 20rpx;
+			width: 750rpx;
+			border-bottom: 2rpx solid #f6f6f6;
+		}
+
+		.tags {
+			display: flex;
+			flex-direction: row;
+			margin-top: 10rpx;
+			flex-wrap: wrap;
+
+			.tag {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				height: 40rpx;
+				margin: 16rpx 20rpx;
+
+				.icon-cicle-right {
+
+					width: 24rpx;
+					height: 24rpx;
+				}
+
+				.tag-text {
+					color: #666;
+					margin-left: 6rpx;
+					font-size: 24rpx;
+					line-height: 40rpx;
+
+
+				}
+
+
+
+			}
+		}
+	}
+</style>
