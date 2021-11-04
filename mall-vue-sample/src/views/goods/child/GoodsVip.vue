@@ -1,52 +1,49 @@
 <template>
-  <div class="vip">
-    <span class="vip-pirce">
-      <span class="price-label"
-        ><span class="price-label-inner">黑卡价</span></span
-      >
-      <span class="price-value">{{ formatPrice(vip.memberPrice, true) }}</span>
-    </span>
+    <div class="vip">
+        <span class="vip-pirce">
+            <span class="price-label"><span class="price-label-inner">黑卡价</span></span>
+            <span class="price-value">{{ formatPrice(vip.memberPrice, true) }}</span>
+        </span>
 
-    <div class="vip-discount-info">
-      <span class="discount-label">开卡本单预计可省</span>
-      <span class="discount-value">{{ discountValue }}</span>
-      <i class="iconfont mall-info"></i>
+        <div class="vip-discount-info">
+            <span class="discount-label">开卡本单预计可省</span>
+            <span class="discount-value">{{ discountValue }}</span>
+            <i class="iconfont mall-info"></i>
+        </div>
+        <div class="vip-empty"></div>
+        <div class="vip-member-rights">
+            <span class="member-rights-label">开卡福利</span>
+            <i class="iconfont mall-arrow-right"></i>
+        </div>
     </div>
-    <div class="vip-empty"></div>
-    <div class="vip-member-rights">
-      <span class="member-rights-label">开卡福利</span>
-      <i class="iconfont mall-arrow-right"></i>
-    </div>
-  </div>
 </template>
 
 <script>
 export default {
-  props: {
-    vip: {
-      type: Object,
+    props: {
+        vip: {
+            type: Object
+        }
     },
-  },
-  data() {
-    return {};
-  },
-  computed: {
-    discountValue() {
-      if (this.vip.discount) {
-        let value =
-          this.vip.discount.forMember + this.vip.discount.forFirstOrder;
-        return this.formatPrice(value, true);
-      }
-      return "";
+    data () {
+        return {}
     },
-  },
+    computed: {
+        discountValue () {
+            if (this.vip.discount) {
+                const value = this.vip.discount.forMember + this.vip.discount.forFirstOrder
+                return this.formatPrice(value, true)
+            }
+            return ''
+        }
+    },
 
-  methods: {
-    formatPrice(price, withDollar = false) {
-      return (withDollar ? "¥" : "") + `${price / 100.0}`;
-    },
-  },
-};
+    methods: {
+        formatPrice (price, withDollar = false) {
+            return `${withDollar ? '¥' : ''}${price / 100.0}`
+        }
+    }
+}
 </script>
 <style lang="less" scoped>
 .vip {

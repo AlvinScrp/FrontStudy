@@ -1,30 +1,29 @@
 <template>
-  <div class="recommend-container">
-    <a
-      class="recommend-item"
-      v-for="(recommend, index) in recommends"
-      :key="index"
-      :href="recommend.link"
-    >
-      <img :src="recommend.image" :alt="recommend.title" />
-      <p>{{ recommend.title }}</p>
-    </a>
-  </div>
+    <div class="recommend-container">
+        <a
+            class="recommend-item"
+            v-for="(recommend, index) in recommends"
+            :key="index"
+            :href="recommend.link">
+            <img :src="recommend.image" :alt="recommend.title" />
+            <p>{{ recommend.title }}</p>
+        </a>
+    </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {};
-  },
-  props: {
-    recommends: {
-      type: Array,
-      required: true,
+    props: {
+        recommends: {
+            type: Array,
+            required: true
+        }
     },
-  },
-  methods: {},
-};
+    data () {
+        return {}
+    },
+    methods: {}
+}
 </script>
 <style scoped>
 .recommend-container {

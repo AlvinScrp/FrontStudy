@@ -1,57 +1,55 @@
 <template>
-  <div class="intro">
-    <div class="name-container">
-      <span class="name">{{ intro.name }}</span>
-      <span class="sales">{{ fromatSales(intro.sales) }}</span>
+    <div class="intro">
+        <div class="name-container">
+            <span class="name">{{ intro.name }}</span>
+            <span class="sales">{{ fromatSales(intro.sales) }}</span>
+        </div>
+        <p class="sub-name">{{ intro.subName }}</p>
+        <div class="labels">
+            <span class="label" v-for="(label, index) in intro.labels" :key="index">
+                {{ label.labelName }}
+            </span>
+        </div>
+        <div class="tags">
+            <span
+                class="tag"
+                v-for="(goodsTag, index) in goodsTagsExtend"
+                :key="index">
+                <i class="iconfont mall-circle-right"></i>
+                {{ goodsTag.tagName }}
+            </span>
+        </div>
     </div>
-    <p class="sub-name">{{ intro.subName }}</p>
-    <div class="labels">
-      <span class="label" v-for="(label, index) in intro.labels" :key="index">
-        {{ label.labelName }}
-      </span>
-    </div>
-    <div class="tags">
-      <span
-        class="tag"
-        v-for="(goodsTag, index) in goodsTagsExtend"
-        :key="index"
-      >
-        <i class="iconfont mall-circle-right"></i>
-        {{ goodsTag.tagName }}
-      </span>
-    </div>
-  </div>
 </template>
 
 <script>
 export default {
-  props: {
-    intro: {
-      type: Object,
+    props: {
+        intro: {
+            type: Object
+        }
     },
-  },
-  data() {
-    return {};
-  },
-  mounted() {
-    console.log(`${JSON.stringify(this.intro)}`);
-  },
-  computed: {
-    goodsTagsExtend() {
-      let extendTags = [{ tagName: "假一赔十" }, { tagName: "权威检测" }];
-      if (this.intro.goodsTags) {
-        return [...extendTags, ...this.intro.goodsTags];
-      }
+    data () {
+        return {}
     },
-  },
-  methods: {
-    fromatSales(value) {
-      let valueStr =
-        value > 10000 ? `${(value / 10000.0).toFixed(1)}万` : `${value}`;
-      return `已售${valueStr}`;
+    computed: {
+        goodsTagsExtend () {
+            const extendTags = [{ tagName: '假一赔十' }, { tagName: '权威检测' }]
+            if (this.intro.goodsTags) {
+                return [...extendTags, ...this.intro.goodsTags]
+            }
+        }
     },
-  },
-};
+    mounted () {
+        console.log(`${JSON.stringify(this.intro)}`)
+    },
+    methods: {
+        fromatSales (value) {
+            const valueStr = value > 10000 ? `${(value / 10000.0).toFixed(1)}万` : `${value}`
+            return `已售${valueStr}`
+        }
+    }
+}
 </script>
 <style lang="less" scoped>
 .intro {

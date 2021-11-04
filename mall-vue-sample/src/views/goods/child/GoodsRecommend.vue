@@ -1,39 +1,37 @@
 <template>
-  <section class="recommond">
-    <div class="split"></div>
+    <section class="recommond">
+        <div class="split"></div>
 
-    <p class="label">为你推荐</p>
-    <!-- <crosswise-scroll>
+        <p class="label">为你推荐</p>
+        <!-- <crosswise-scroll>
       <div class="wrapper">
         <span class="scroll-item" v-for="(item, index) in 6" :key="index">{{
           item
         }}</span>
       </div>
     </crosswise-scroll> -->
-    <swiper class="swiper" :options="swiperOption">
-      <swiper-slide
-        class="slide-item"
-        v-for="(recommond, index) in recommonds"
-        :key="index"
-      >
-        <img class="recommond-image" :src="recommond.imageUrl" alt="" />
-        <p class="intro">{{ recommond.intro }}</p>
-        <p class="price">
-          <span class="sell-price">
-            {{ formatPrice(recommond.sellPrice, true) }}
-          </span>
-          <span
-            class="original-price"
-            v-show="recommond.sellPrice < recommond.originalPrice"
-          >
-            {{ formatPrice(recommond.originalPrice, true) }}
-          </span>
-        </p>
-      </swiper-slide>
+        <swiper class="swiper" :options="swiperOption">
+            <swiper-slide
+                class="slide-item"
+                v-for="(recommond, index) in recommonds"
+                :key="index">
+                <img class="recommond-image" :src="recommond.imageUrl" alt="" />
+                <p class="intro">{{ recommond.intro }}</p>
+                <p class="price">
+                    <span class="sell-price">
+                        {{ formatPrice(recommond.sellPrice, true) }}
+                    </span>
+                    <span
+                        class="original-price"
+                        v-show="recommond.sellPrice < recommond.originalPrice">
+                        {{ formatPrice(recommond.originalPrice, true) }}
+                    </span>
+                </p>
+            </swiper-slide>
 
-      <!-- <div class="swiper-pagination" slot="pagination"></div> -->
-    </swiper>
-  </section>
+            <!-- <div class="swiper-pagination" slot="pagination"></div> -->
+        </swiper>
+    </section>
 </template>
 
 <script>
@@ -46,89 +44,89 @@
 
 // Vue.use(VueAwesomeSwiper /* { default options with global component } */);
 
-import { Swiper, SwiperSlide } from "vue-awesome-swiper";
-import "swiper/css/swiper.css";
+import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+import 'swiper/css/swiper.css'
 
 export default {
-  props: {
-    recommonds: {
-      type: Array,
-      default() {
-        return [
-          {
-            imageUrl:
-              "https://staticimg.ngmm365.com/a88539d549d1208afbace1d04d6b08b1-w800_h800.jpg",
-            intro: "Ddrops维生素D3滴剂婴儿版*2瓶15天+ ",
-            sellPrice: 19200,
-            originalPrice: 19900,
-          },
-          {
-            imageUrl:
-              "https://staticimg.ngmm365.com/5648b1b5bde466e49d6864650569bf0e-w1024_h1024.jpg",
-            intro: "小小伞维生素D3 8ml/瓶 ",
-            sellPrice: 9900,
-            originalPrice: 12900,
-          },
-          {
-            imageUrl:
-              "https://staticimg.ngmm365.com/c290a216db6488ae6cc1c71c6b42d0aa-w800_h800.jpg",
-            intro: "【2瓶】Ostelin奥斯特林维D滴剂 20ml 6m+ ",
-            sellPrice: 6900,
-            originalPrice: 69000,
-          },
-          {
-            imageUrl:
-              "https://staticimg.ngmm365.com/2e09cf34201c002335dcf1a7c9edb360-w800_h800.jpg",
-            intro: "小澳特力软糖3g/粒×45粒/瓶 ",
-            sellPrice: 3900,
-            originalPrice: 4900,
-          },
-          {
-            imageUrl:
-              "https://staticimg.ngmm365.com/973dbe117f1957a7f7d8d0c30f03a8a5-w800_h800.jpg",
-            intro: "D-CAL/迪巧小黄条婴幼儿液体钙 10ml*20条/盒",
-            sellPrice: 19200,
-            originalPrice: 19900,
-          },
-          {
-            imageUrl:
-              "https://staticimg.ngmm365.com/fa379563f8815b9d10ca5e437a5b9f5b-w800_h800.jpg",
-            intro: " Swisse K2钙维生素D骨骼片 90片/瓶 ",
-            sellPrice: 19900,
-            originalPrice: 19900,
-          },
-        ];
-      },
-    },
-  },
-  components: {
-    Swiper,
-    SwiperSlide,
+    components: {
+        Swiper,
+        SwiperSlide
     // CrosswiseScroll,
-  },
-  data() {
-    return {
-      swiperOption: {
-        slidesPerView: 3.5,
-        spaceBetween: 15,
-        freeMode: true,
-      },
-    };
-  },
-  computed: {
+    },
+    props: {
+        recommonds: {
+            type: Array,
+            default () {
+                return [
+                    {
+                        imageUrl:
+              'https://staticimg.ngmm365.com/a88539d549d1208afbace1d04d6b08b1-w800_h800.jpg',
+                        intro: 'Ddrops维生素D3滴剂婴儿版*2瓶15天+ ',
+                        sellPrice: 19200,
+                        originalPrice: 19900
+                    },
+                    {
+                        imageUrl:
+              'https://staticimg.ngmm365.com/5648b1b5bde466e49d6864650569bf0e-w1024_h1024.jpg',
+                        intro: '小小伞维生素D3 8ml/瓶 ',
+                        sellPrice: 9900,
+                        originalPrice: 12900
+                    },
+                    {
+                        imageUrl:
+              'https://staticimg.ngmm365.com/c290a216db6488ae6cc1c71c6b42d0aa-w800_h800.jpg',
+                        intro: '【2瓶】Ostelin奥斯特林维D滴剂 20ml 6m+ ',
+                        sellPrice: 6900,
+                        originalPrice: 69000
+                    },
+                    {
+                        imageUrl:
+              'https://staticimg.ngmm365.com/2e09cf34201c002335dcf1a7c9edb360-w800_h800.jpg',
+                        intro: '小澳特力软糖3g/粒×45粒/瓶 ',
+                        sellPrice: 3900,
+                        originalPrice: 4900
+                    },
+                    {
+                        imageUrl:
+              'https://staticimg.ngmm365.com/973dbe117f1957a7f7d8d0c30f03a8a5-w800_h800.jpg',
+                        intro: 'D-CAL/迪巧小黄条婴幼儿液体钙 10ml*20条/盒',
+                        sellPrice: 19200,
+                        originalPrice: 19900
+                    },
+                    {
+                        imageUrl:
+              'https://staticimg.ngmm365.com/fa379563f8815b9d10ca5e437a5b9f5b-w800_h800.jpg',
+                        intro: ' Swisse K2钙维生素D骨骼片 90片/瓶 ',
+                        sellPrice: 19900,
+                        originalPrice: 19900
+                    }
+                ]
+            }
+        }
+    },
+    data () {
+        return {
+            swiperOption: {
+                slidesPerView: 3.5,
+                spaceBetween: 15,
+                freeMode: true
+            }
+        }
+    },
+    computed: {
     // swiper() {
     //   return this.$refs.mySwiper.swiper;
     // },
-  },
-  methods: {
-    formatPrice(price, withDollar = false) {
-      return (withDollar ? "¥" : "") + `${price / 100.0}`;
     },
-  },
-  mounted() {
+    mounted () {
     // this.swiper.slideTo(3, 1000, false);
-  },
-};
+    },
+    methods: {
+        formatPrice (price, withDollar = false) {
+            return `${withDollar ? '¥' : ''}${price / 100.0}`
+        }
+    }
+}
 </script>
 <style lang="less" scoped>
 .split {

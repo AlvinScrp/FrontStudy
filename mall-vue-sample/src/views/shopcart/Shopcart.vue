@@ -1,21 +1,21 @@
 <template>
- <div id="shopcart">
-   shopcart
- </div>
+    <div id="shopcart">
+        shopcart
+    </div>
 </template>
 
 <script>
 export default {
- data() {
-   return {
-     
-   }
- },
- methods: {
-    
- },
+    data () {
+        return {
+
+        }
+    },
+    methods: {
+
+    }
 }
 </script>
 <style scoped>
- 
+
 </style>

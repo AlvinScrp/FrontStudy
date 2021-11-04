@@ -1,43 +1,42 @@
 <template>
-  <div class="activity">
-    <div class="left">
-      <p>{{ activity.activityLabel }}</p>
-      <p class="price-container">
-        <span class="dollar">¥</span>
-        <span class="sellPrice"
-          >{{ formatPrice(activity.sellPrice) }}&nbsp;
-        </span>
-        <span class="originSellPrice"
-          >{{ formatPrice(activity.originSellPrice, true) }}
-        </span>
-      </p>
+    <div class="activity">
+        <div class="left">
+            <p>{{ activity.activityLabel }}</p>
+            <p class="price-container">
+                <span class="dollar">¥</span>
+                <span class="sellPrice">{{ formatPrice(activity.sellPrice) }}&nbsp;
+                </span>
+                <span class="originSellPrice">{{ formatPrice(activity.originSellPrice, true) }}
+                </span>
+            </p>
+        </div>
+        <div class="right">
+            <p class="count-down-title">距结束</p>
+            <count-down :endTime="activity.activityEndTime"></count-down>
+        </div>
     </div>
-    <div class="right">
-      <p class="count-down-title">距结束</p>
-      <count-down :endTime="activity.activityEndTime"></count-down>
-    </div>
-  </div>
 </template>
 
 <script>
-import CountDown from "components/CountDown.vue";
-export default {
-  components: { CountDown },
-  props: {
-    activity: {
-      type: Object,
-    },
-  },
-  data() {
-    return {};
-  },
+import CountDown from 'components/CountDown.vue'
 
-  methods: {
-    formatPrice(price, withDollar = false) {
-      return (withDollar ? "¥" : "") + `${price / 100.0}`;
+export default {
+    components: { CountDown },
+    props: {
+        activity: {
+            type: Object
+        }
     },
-  },
-};
+    data () {
+        return {}
+    },
+
+    methods: {
+        formatPrice (price, withDollar = false) {
+            return `${withDollar ? '¥' : ''}${price / 100.0}`
+        }
+    }
+}
 </script>
 <style lang="less" scoped>
 .activity {

@@ -1,33 +1,33 @@
 <template>
-  <div class="out-wrapper">
-    <div class="wrapper">
-      <div class="nav-icon">
-        <i class="ic iconfont mall-online-service"></i>
-        <p class="label">客服</p>
-      </div>
-      <div class="nav-icon">
-        <i class="ic iconfont mall-home"></i>
-        <p class="label">商城</p>
-      </div>
-      <div class="nav-icon">
-        <i class="ic iconfont mall-shopcar"></i>
-        <p class="label">购物车</p>
-      </div>
-      <div class="goods-opt">
-        <span class="add-shopcar">加入购物车</span>
-        <span class="buy">立即购买</span>
-      </div>
+    <div class="out-wrapper">
+        <div class="wrapper">
+            <div class="nav-icon">
+                <i class="ic iconfont mall-online-service"></i>
+                <p class="label">客服</p>
+            </div>
+            <div class="nav-icon">
+                <i class="ic iconfont mall-home"></i>
+                <p class="label">商城</p>
+            </div>
+            <div class="nav-icon">
+                <i class="ic iconfont mall-shopcar"></i>
+                <p class="label">购物车</p>
+            </div>
+            <div class="goods-opt">
+                <span class="add-shopcar">加入购物车</span>
+                <span class="buy">立即购买</span>
+            </div>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {};
-  },
-  methods: {},
-};
+    data () {
+        return {}
+    },
+    methods: {}
+}
 </script>
 <style lang="less" scoped>
 .out-wrapper {

@@ -1,24 +1,24 @@
 <template>
-  <div class="tab-bar-item">
-    <img class="image" v-show="isActive" :src="tabItem.iconActive" />
-    <img class="image" v-show="!isActive" :src="tabItem.icon" />
-    <p :class="{ active: isActive }">{{ tabItem.title }}</p>
-  </div>
+    <div class="tab-bar-item">
+        <img class="image" v-show="isActive" :src="tabItem.iconActive" />
+        <img class="image" v-show="!isActive" :src="tabItem.icon" />
+        <p :class="{ active: isActive }">{{ tabItem.title }}</p>
+    </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {};
-  },
-  props: {
-    tabItem: {},
-    isActive: {
-      type: Boolean,
-      default: false,
+    props: {
+        tabItem: {},
+        isActive: {
+            type: Boolean,
+            default: false
+        }
     },
-  },
-};
+    data () {
+        return {}
+    }
+}
 </script>
 <style scoped>
 .tab-bar-item .image {
@@ -31,6 +31,6 @@ export default {
   font-size: 11px;
 }
 .active {
-  color: #fce9ed;
+  color: #ff5777;
 }
 </style>

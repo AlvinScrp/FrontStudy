@@ -1,50 +1,49 @@
 <template>
-  <div class="indicator-container" :style="{backgroundColor:backgroundColor}">
-    <div
-      class="item"
-      v-for="(item, index) in items"
-      :key="index"
-      :class="{ active: isActivate(index) }"
-      @click="onItemClick(index)"
-    >
-      <p>{{ item.label }}</p>
-      <div class="item-line"></div>
+    <div class="indicator-container" :style="{backgroundColor:backgroundColor}">
+        <div
+            class="item"
+            v-for="(item, index) in items"
+            :key="index"
+            :class="{ active: isActivate(index) }"
+            @click="onItemClick(index)">
+            <p>{{ item.label }}</p>
+            <div class="item-line"></div>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
 export default {
-  props: {
-    backgroundColor:{
-      type:String,
-      default:"#f6f8fb",
+    props: {
+        backgroundColor: {
+            type: String,
+            default: '#f6f8fb'
+        },
+        items: {
+            type: Array
+        },
+        currentIndex: {
+            type: Number,
+            required: true,
+            default: 0
+        }
     },
-    items: {
-      type: Array,
+    data () {
+        return {}
     },
-    currentIndex: {
-      type: Number,
-      required: true,
-      default: 0,
-    },
-  },
-  data() {
-    return {};
-  },
 
-  methods: {
-    isActivate(index) {
-      return index === this.currentIndex;
-    },
-    onItemClick(index) {
-      if (this.isActivate(index)) {
-        return;
-      }
-      this.$emit("indicator-click", index);
-    },
-  },
-};
+    methods: {
+        isActivate (index) {
+            return index === this.currentIndex
+        },
+        onItemClick (index) {
+            if (this.isActivate(index)) {
+                return
+            }
+            this.$emit('indicator-click', index)
+        }
+    }
+}
 </script>
 <style lang="less"  scoped>
 .indicator-container {

@@ -6,28 +6,28 @@
 </template>
 
 <script>
-import Vue from "vue";
+import Vue from 'vue'
 
 export default {
     props: {
         detailHtml: {
             type: String,
-            default: "",
-        },
+            default: ''
+        }
     },
-    data() {
+    data () {
         return {
-            id: 111,
-        };
+            id: 111
+        }
     },
-    methods: {},
-        created() {   
-        console.log(`detail area created :${this.detailHtml}`);
+    created () {
+        console.log(`detail area created :${this.detailHtml}`)
     },
+    methods: {}
     // updated() {
     //   console.log(`detail area update ${this.detailHtml}`);
     // },
-};
+}
 </script>
 <style lang="less" >
 .goods-detail-area-top-split {

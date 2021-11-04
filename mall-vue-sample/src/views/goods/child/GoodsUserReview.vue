@@ -1,91 +1,88 @@
 <template>
-  <section class="review">
-    <div class="split"></div>
-    <div class="content">
-      <div class="top-total">
-        <span class="count">评价 {{ review.count }}</span>
-        <span class="score">
-          <span class="score-label">好评率</span>
-          <span class="score-value">{{ goodScoreStr }}</span>
-          <i class="score-icon iconfont mall-arrow-right"></i>
-        </span>
-      </div>
-      <div class="intro">
-        <div
-          class="user-avatar"
-          :style="imageBgStyle(this.review.topItem.userAvatar)"
-        />
-        <!--   -->
-        <div class="intro-title">
-          <span class="user-name">{{ review.topItem.userName }}</span>
-          <div class="star">
-            <div class="star-item" v-for="(item, index) in 5" :key="index">
-              <i class="star-item-on" v-if="item <= review.topItem.star" />
-              <i class="star-item-normal" v-else />
-              <!-- <div class="start-item-on" /> -->
+    <section class="review">
+        <div class="split"></div>
+        <div class="content">
+            <div class="top-total">
+                <span class="count">评价 {{ review.count }}</span>
+                <span class="score">
+                    <span class="score-label">好评率</span>
+                    <span class="score-value">{{ goodScoreStr }}</span>
+                    <i class="score-icon iconfont mall-arrow-right"></i>
+                </span>
             </div>
-          </div>
-        </div>
+            <div class="intro">
+                <div
+                    class="user-avatar"
+                    :style="imageBgStyle(this.review.topItem.userAvatar)"/>
+                <!--   -->
+                <div class="intro-title">
+                    <span class="user-name">{{ review.topItem.userName }}</span>
+                    <div class="star">
+                        <div class="star-item" v-for="(item, index) in 5" :key="index">
+                            <i class="star-item-on" v-if="item <= review.topItem.star" />
+                            <i class="star-item-normal" v-else />
+                            <!-- <div class="start-item-on" /> -->
+                        </div>
+                    </div>
+                </div>
 
-        <span class="buy-info"
-          >{{ review.topItem.buyTime }} {{ review.topItem.buyIntro }}
-        </span>
-      </div>
-      <p class="text">{{ review.topItem.content }}</p>
-      <div class="image-shows">
-        <div
-          class="image-item"
-          v-for="(image, index) in review.topItem.images"
-          :key="index"
-          :style="imageBgStyle(image)"
-        />
-      </div>
-    </div>
-  </section>
+                <span class="buy-info">{{ review.topItem.buyTime }} {{ review.topItem.buyIntro }}
+                </span>
+            </div>
+            <p class="text">{{ review.topItem.content }}</p>
+            <div class="image-shows">
+                <div
+                    class="image-item"
+                    v-for="(image, index) in review.topItem.images"
+                    :key="index"
+                    :style="imageBgStyle(image)"/>
+            </div>
+        </div>
+    </section>
 </template>
 
 <script>
 export default {
-  props: {},
-  data() {
-    return {
-      review: {
-        count: 411,
-        goodScore: 0.9608,
-        topItem: {
-          userName: "雯*****购",
-          userAvatar:
-            "https://staticimg.ngmm365.com/a865c02fb79e46e59e6e9e53495f2cc5.jpg",
-          star: 4,
-          buyTime: "2021-03-21",
-          buyIntro: "幼儿D3滴剂 100滴*2瓶",
-          content:
-            " 已经开始食啦，大宝小宝张开嘴巴每人一滴，非常方便，助力宝宝长高高！！！支持年糕妈妈！！！ ",
-          images: [
-            "https://staticimg.ngmm365.com/1/6400627_1_de9404f60cb04bc89d148a423b951037-w3000_h4000.jpeg",
-            "https://staticimg.ngmm365.com/1/6848125_1_ca00ee695df4426bbc3eb32674bd4ec0-w3024_h4032.jpeg",
-            "https://staticimg.ngmm365.com/1/8207253_1_f60f29de57644b999cf6bb790dfcb7a7-w3468_h4624.jpeg",
-            "https://staticimg.ngmm365.com/1/10010038_1_f42315d582e94c6dabb80bc50539ef4c-w3456_h4608.jpeg",
-            "https://staticimg.ngmm365.com/1/10010038_1_bd5334eb63664bb09fe96aa7eecf0c71-w3456_h4608.jpeg",
-          ],
-        },
-      },
-    };
-  },
-  methods: {
-    imageBgStyle(imageUrl) {
-      return {
-        background: `url(${imageUrl}) no-repeat`,
-        backgroundSize: `100%`,
-      };
+    props: {},
+    data () {
+        return {
+            review: {
+                count: 411,
+                goodScore: 0.9608,
+                topItem: {
+                    userName: '雯*****购',
+                    userAvatar:
+            'https://staticimg.ngmm365.com/a865c02fb79e46e59e6e9e53495f2cc5.jpg',
+                    star: 4,
+                    buyTime: '2021-03-21',
+                    buyIntro: '幼儿D3滴剂 100滴*2瓶',
+                    content:
+            ' 已经开始食啦，大宝小宝张开嘴巴每人一滴，非常方便，助力宝宝长高高！！！支持年糕妈妈！！！ ',
+                    images: [
+                        'https://staticimg.ngmm365.com/1/6400627_1_de9404f60cb04bc89d148a423b951037-w3000_h4000.jpeg',
+                        'https://staticimg.ngmm365.com/1/6848125_1_ca00ee695df4426bbc3eb32674bd4ec0-w3024_h4032.jpeg',
+                        'https://staticimg.ngmm365.com/1/8207253_1_f60f29de57644b999cf6bb790dfcb7a7-w3468_h4624.jpeg',
+                        'https://staticimg.ngmm365.com/1/10010038_1_f42315d582e94c6dabb80bc50539ef4c-w3456_h4608.jpeg',
+                        'https://staticimg.ngmm365.com/1/10010038_1_bd5334eb63664bb09fe96aa7eecf0c71-w3456_h4608.jpeg'
+                    ]
+                }
+            }
+        }
     },
-  },
-  computed: {
-    goodScoreStr() {
-      return `${this.review.goodScore * 100.0}%`;
+    computed: {
+        goodScoreStr () {
+            return `${this.review.goodScore * 100.0}%`
+        }
     },
-  },
-};
+    methods: {
+        imageBgStyle (imageUrl) {
+            return {
+                background: `url(${imageUrl}) no-repeat`,
+                backgroundSize: '100%'
+            }
+        }
+    }
+}
 </script>
 <style lang="less" scoped>
 .split {
