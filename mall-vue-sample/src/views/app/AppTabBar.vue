@@ -18,24 +18,24 @@ export default {
         return {
             appTabItems: [
                 {
-                    title: 'Home',
-                    icon: 'img/tabbar/home.svg',
-                    iconActive: 'img/tabbar/home_active.svg'
+                    title: '首页',
+                    icon: 'img/tabbar/home.png',
+                    iconActive: 'img/tabbar/home_active.png'
                 },
                 {
-                    title: 'Category',
-                    icon: 'img/tabbar/category.svg',
-                    iconActive: 'img/tabbar/category_active.svg'
+                    title: '分类',
+                    icon: 'img/tabbar/category.png',
+                    iconActive: 'img/tabbar/category_active.png'
                 },
                 {
-                    title: 'Shopcart',
-                    icon: 'img/tabbar/shopcart.svg',
-                    iconActive: 'img/tabbar/shopcart_active.svg'
+                    title: '购物车',
+                    icon: 'img/tabbar/shopcart.png',
+                    iconActive: 'img/tabbar/shopcart_active.png'
                 },
                 {
-                    title: 'Profile',
-                    icon: 'img/tabbar/profile.svg',
-                    iconActive: 'img/tabbar/profile_active.svg'
+                    title: '我的',
+                    icon: 'img/tabbar/profile.png',
+                    iconActive: 'img/tabbar/profile_active.png'
                 }
             ],
             paths: ['/home', '/category', '/shopcart', '/profile'],
@@ -82,16 +82,16 @@ export default {
 </script>
 <style scoped>
 .tab-bar {
-  background-color: #f6f6f6;
-  height: var(--tabbar-height);
-  border-top: 1px solid #eee;
+    background-color: #f6f6f6;
+    height: var(--tabbar-height);
+    border-top: 1px solid #eee;
 
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
 
-  display: flex;
-  text-align: center;
+    display: flex;
+    text-align: center;
 }
 </style>

@@ -36,10 +36,9 @@
 // @ is an alias to /src
 
 import {
-    TOP_INSTANCE, POP, NEW, SELL
+    POP, NEW, SELL
 } from 'common/const.js'
 import * as homeHttp from 'network/home.js'
-import ToolBar from 'components/ToolBar.vue'
 import ScrollView from 'components/ScrollView.vue'
 import HomeSlider from './child/HomeSlider'
 import HomeRecommend from './child/HomeRecommend'
@@ -49,7 +48,6 @@ import GoodsFeed from './child/GoodsFeed'
 export default {
     name: 'Home',
     components: {
-        ToolBar,
         ScrollView,
         HomeSlider,
         HomeRecommend,
@@ -166,30 +164,30 @@ export default {
 </script>
 <style>
 .home {
-  width: 100vw;
-  top: 0px;
-  bottom: var(--tabbar-height);
-  position: absolute;
+    width: 100vw;
+    top: 0px;
+    bottom: var(--tabbar-height);
+    position: absolute;
 }
 .home-toolbar {
-  background-color: var(--color-tint);
-  z-index: 9;
-  color: white;
+    background-color: var(--color-tint);
+    z-index: 9;
+    color: white;
 }
 .home-goods-indicator-divider {
-  height: 1vh;
-  width: 100vw;
-  background-color: #f6f6f6;
+    height: 1vh;
+    width: 100vw;
+    background-color: #f6f6f6;
 }
 .scroll-view-wrraper {
-  position: absolute;
-  /* top: var(--toolbar-height); */
-  top: 0;
-  bottom: 0px;
-  left: 0;
-  right: 0;
+    position: absolute;
+    /* top: var(--toolbar-height); */
+    top: 0;
+    bottom: 0px;
+    left: 0;
+    right: 0;
 }
 .top-goods-indicator {
-  z-index: 9;
+    z-index: 9;
 }
 </style>

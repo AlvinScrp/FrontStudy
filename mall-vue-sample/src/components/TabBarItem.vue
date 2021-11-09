@@ -22,15 +22,17 @@ export default {
 </script>
 <style scoped>
 .tab-bar-item .image {
-  width: 20px;
-  height: 20px;
-  margin-top: 6px;
+    width: 20px;
+    height: 20px;
+    margin-top: 6px;
+    margin-bottom: 2px;
 }
 .tab-bar-item {
-  flex: 1;
-  font-size: 11px;
+    flex: 1;
+    font-size: 11px;
+    color: #666;
 }
 .active {
-  color: #ff5777;
+    color: #d81e06;
 }
 </style>
