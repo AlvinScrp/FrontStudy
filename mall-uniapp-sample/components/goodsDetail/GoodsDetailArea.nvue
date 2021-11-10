@@ -59,10 +59,10 @@
 	};
 </script>
 <style lang="less">
-	///* #ifndef APP-NVUE  */
+
 	 @import url("/components/gaoyia-parse/parse.css");
 
-	///* #endif */
+
 	.goods-detail-area-top-split {
 		background-color: #f6f6f6;
 		width: 750rpx;

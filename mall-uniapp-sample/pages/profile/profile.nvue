@@ -1,15 +1,55 @@
 <template>
-	<div>
-		profile
-	</div>
+	<scroll-view  show-scrollbar="false" scroll-y="true" id="profile" class="profile">
+			<header-info class="header-info"></header-info>
+			<my-order class="my-order"></my-order>
+			<my-wallet class="my-wallet"></my-wallet>
+			<tool-service class="tool-service"></tool-service>
+			<view class="bottom"></view>
+		
+	</scroll-view>
+
+
 </template>
 
 <script>
+	import HeaderInfo from '../../components/profile/HeaderInfo.vue'
+	import MyOrder from '../../components/profile/MyOrder.vue'
+	import MyWallet from '../../components/profile/MyWallet.vue'
+	import ToolService from '../../components/profile/ToolService.vue'
+
 	export default {
-		
+		components: {
+			HeaderInfo,
+			MyOrder,
+			MyWallet,
+			ToolService
+		},
+		data() {
+			return {
+
+			}
+		},
+		methods: {
+
+		}
 	}
 </script>
+<style lang='less' scoped>
+	.profile {
+		background-color: #f6f8fb;
+		width: 750rpx;
+		position: absolute;
+		top: 0;
+		overflow: scroll;
 
-<style>
-
+		.bottom {
+			position: relative;
+			margin-top: 30rpx;
+			background-color: white;
+			border-radius: 30rpx;
+			padding: 20rpx 14rpx;
+			height: 400rpx;
+			margin-bottom: 200rpx;
+		}
+	}
 </style>

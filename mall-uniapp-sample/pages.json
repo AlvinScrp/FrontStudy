@@ -15,12 +15,21 @@
 		},
 			
 		{
-			"path":"pages/category/category"
+			"path":"pages/category/category",
+			"style": {
+				"navigationBarTitleText": "分类"
+			}
 		},{
-			"path":"pages/shopcart/shopcart"
+			"path":"pages/shopcart/shopcart",
+			"style": {
+				"navigationBarTitleText": "购物车"
+			}
 		},
 		{
-			"path":"pages/profile/profile"
+			"path":"pages/profile/profile",
+			"style": {
+				"navigationBarTitleText": "我的京东"
+			}
 		},
 		{
 			"path":"pages/goodsDetail/goodsDetail",
@@ -37,31 +46,31 @@
 		"backgroundColor": "#F8F8F8"
 	},
 	"tabBar": {
-		"color": "#7A7E83",
-		"selectedColor": "#d4237a",
+		"color": "#666",
+		"selectedColor": "#d81e06",
 		"borderStyle": "black",
 		"backgroundColor": "#ffffff",
 		"list": [{
 				"pagePath": "pages/home/home",
-				"text": "Home",
+				"text": "首页",
 				"iconPath": "static/img/tabbar/home.png",
 				"selectedIconPath": "static/img/tabbar/home_active.png"
 			},
 			{
 				"pagePath": "pages/category/category",
-				"text": "Category",
+				"text": "分类",
 				"iconPath": "static/img/tabbar/category.png",
 				"selectedIconPath": "static/img/tabbar/category_active.png"
 			},
 			{
 				"pagePath": "pages/shopcart/shopcart",
-				"text": "Shopcart",
+				"text": "购物车",
 				"iconPath": "static/img/tabbar/shopcart.png",
 				"selectedIconPath": "static/img/tabbar/shopcart_active.png"
 			},
 			{
 				"pagePath": "pages/profile/profile",
-				"text": "Profile",
+				"text": "我的",
 				"iconPath": "static/img/tabbar/profile.png",
 				"selectedIconPath": "static/img/tabbar/profile_active.png"
 			}

@@ -4,7 +4,10 @@ import App from './App'
 import Vue from 'vue'
 Vue.config.productionTip = false
 App.mpType = 'app'
+import store from './store'
+Vue.prototype.$store = store
 const app = new Vue({
+		store,
     ...App
 })
 app.$mount()

@@ -1,15 +1,196 @@
 <template>
-	<view>
-		category
+	<view class="category" :style="heightStyle">
+		<view class="body" >
+			<!-- #ifndef APP-NVUE -->
+			<scroll-view show-scrollbar="false" :style="heightStyle" class="tab-scroll" scroll-x="false"
+				scroll-y="true">
+			<!-- #endif -->
+			<!-- #ifdef APP-NVUE -->
+			<scroller show-scrollbar="false" class="tab-scroll" :style="heightStyle" scroll-x="false"
+					scroll-y="true">
+			<!-- #endif -->
+
+					<!-- <view class="tab"> -->
+					<view class="tab-item" :class="{'item-active':isActive(index)}" v-for="(tab,index) in tabs"
+						:key="index" @click="onTabItemClick(index)"> <text class="tab-text"
+							:class="{'text-active':isActive(index)}">{{tab}}</text></view>
+					<!-- </view> -->
+		<!-- #ifndef APP-NVUE  -->
+			</scroll-view>
+			<!-- #endif -->
+			<!-- #ifdef APP-NVUE  -->
+			</scroller>
+			<!-- #endif -->
+			<!-- #ifndef APP-NVUE -->
+			<scroll-view show-scrollbar="false" :style="heightStyle" class="content-scroll" scroll-x="false" 
+				scroll-y="true" >
+			<!-- #endif -->
+				<!-- #ifdef APP-NVUE -->
+				<scroller show-scrollbar="false" :style="heightStyle" class="content-scroll" scroll-x="false"
+					scroll-y="true">
+					<!-- #endif -->
+
+		
+					<!-- <view class="content"> -->
+					<view class="branch-section" v-for="(section,index) in branchSectionsOnShow" :key="index">
+						<text class="section-title">{{section.title}}</text>
+						<view class="branch-container">
+							<view v-for="(branch,index) in section.branchs" :key="index" class="branch"
+								@click="onBranchClick(branch)">
+								<image class="branch-image" :src="branch.image" alt="">
+									<text class="branch-name">{{branch.name}}</text>
+							</view>
+						</view>
+						<!-- </view> -->
+					</view>
+					<text style="height:100px;text-align:center;">-- 见底了22 --</text>
+
+					<!-- #ifndef APP-NVUE  -->
+			</scroll-view>
+			<!-- #endif -->
+			<!-- #ifdef APP-NVUE  -->
+			</scroller>
+			<!-- #endif -->
+
+		</view>
 	</view>
+
 </template>
 
-<script lang="js">
+<script>
+	import {
+		categoryData
+	} from '../../network/category.js'
 	export default {
-		
+		data() {
+			return {
+				tabs: [],
+				activeIndex: 1,
+				heightStyle: 'height:1rpx;',
+				// branchSections: [{ title: '', branchs: [{ image: '', title: '' }] }]
+			}
+		},
+		computed: {
+			branchSectionsOnShow() {
+				const realIndex = this.activeIndex % categoryData.branchSectionsList.length
+				return categoryData.branchSectionsList[realIndex]
+			}
+		},
+		mounted() {
+			console.log('category mounted')
+			this.tabs = categoryData.tabs
+			const res = uni.getSystemInfoSync();
+			console.log(res);
+			const bodyHeight = res.windowHeight * 750 / (res.screenWidth * 1.0)
+			this.heightStyle = `height:${bodyHeight}rpx;`
+
+		},
+		updated() {
+
+		},
+		methods: {
+			isActive(index) {
+				return this.activeIndex === index
+			},
+			onTabItemClick(index) {
+				console.log(`onTabItemClick:${index}`)
+				this.activeIndex = index
+			},
+			onBranchClick(branch) {
+				console.log('onBranchClick', branch)
+			}
+
+		}
 	}
 </script>
+<style lang="less" scoped>
+	.category {
+		width: 750rpx;
+		position: absolute;
 
-<style>
 
+		flex-direction: column;
+
+
+		.body {
+
+			position: absolute;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			width: 750rpx;
+			background-color: #f8f8f8;
+
+			.tab-scroll {
+				width: 170rpx;
+
+				.tab-item {
+					width: 170rpx;
+					text-align: center;
+					background-color: #f8f8f8;
+
+					.tab-text {
+						height: 92rpx;
+						line-height: 92rpx;
+						font-size: 28rpx;
+						text-align: center;
+						color: #333;
+					}
+
+					.text-active {
+						color: #e93b3d !important;
+					}
+				}
+
+				.item-active {
+
+					background-color: white;
+				}
+
+				// }
+			}
+
+			.content-scroll {
+				width: 580rpx;
+				background-color: white;
+
+				padding: 38rpx 0rpx 0 14rpx;
+
+
+
+
+				.section-title {
+					font-size: 28rpx;
+					color: #333;
+					font-weight: 700;
+				}
+
+				.branch-container {
+					margin: 18rpx 0 0;
+					padding: 14rpx 20rpx 0;
+					display: flex;
+					flex-direction: row;
+					flex-wrap: wrap;
+
+					.branch {
+						display: flex;
+						flex-direction: column;
+						align-items: center;
+						width: 166rpx;
+						height: 214rpx;
+
+						.branch-image {
+							width: 140rpx;
+							height: 140rpx;
+						}
+
+						.branch-name {
+							color: #333;
+							margin-top: 4rpx;
+							font-size: 24rpx;
+						}
+					}
+				}
+			}
+		}
+	}
 </style>
