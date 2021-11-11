@@ -41,6 +41,11 @@
 		position: absolute;
 		top: 0;
 		overflow: scroll;
+		
+		.my-order{
+			position: relative;
+			margin-top: -23rpx;
+		}
 
 		.bottom {
 			position: relative;

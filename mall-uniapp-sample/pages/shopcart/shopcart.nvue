@@ -188,6 +188,7 @@
 			/*  #endif*/
 			/* #ifndef APP-NVUE || MP-WEIXIN */
 			z-index: 99;
+			bottom: 98rpx;
 			/*  #endif*/
 
 			height: 100rpx;

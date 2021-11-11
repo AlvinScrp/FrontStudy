@@ -40,19 +40,19 @@
 			<view class="plus-wrap">
 				<image class="plus-bg-image"
 					src="https://img12.360buyimg.com/img/s678x99_jfs/t1/112839/2/12981/33105/5f17e12aE602bb83e/8a736742745d79cf.png"
-					alt="">
-		
-			<view class="plus">
-				<view class="plus-left">
-					<image class="plus-logo" :src="plus.logo" alt="">
+					alt="" />
+
+				<view class="plus">
+					<view class="plus-left">
+						<image class="plus-logo" :src="plus.logo" alt="" />
 						<view class="split"></view>
 						<text class="plus-tip">{{plus.tip}}</text>
+					</view>
+					<view class="plus-right">
+						<text class="look-look">立即查看</text>
+						<image class="look-arrow" src="../../static/img/profile/icon_profile_arrow_black.png" alt="" />
+					</view>
 				</view>
-				<view class="plus-right">
-					<text class="look-look">立即查看</text>
-					<image class="look-arrow" src="../../static/img/profile/icon_profile_arrow_black.png" alt="">
-				</view>
-			</view>
 			</view>
 		</view>
 
@@ -246,18 +246,19 @@
 			}
 
 			.plus-wrap {
-				position: relative;
+				position: absolute;
+				bottom: 20rpx;
 
 				.plus-bg-image {
-					position: absolute;
-					height: 84rpx;
+					height: 80rpx;
 					width: 690rpx;
 				}
 
 
 				.plus {
 					position: absolute;
-					height: 84rpx;
+					top: 0;
+					height: 80rpx;
 					padding-left: 20rpx;
 					padding-right: 20rpx;
 					width: 690rpx;

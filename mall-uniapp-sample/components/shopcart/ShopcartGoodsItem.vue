@@ -9,7 +9,7 @@
 		</view>
 		<image class="goods-image" :src="goods.image" alt="" mode="aspectFill">
 			<view class="goods-content">
-
+		
 				<!-- #ifndef APP-NVUE -->
 				<text class="goods-name">
 					<text v-if="goods.tagText" class="goods-tag"
@@ -160,17 +160,18 @@
 
 
 			.goods-tag {
-				font-size: 24rpx;
+				font-size: 23rpx;
 				border-radius: 4rpx;
 
 				margin-right: 10rpx;
 				padding-left: 10rpx;
 				padding-right: 10rpx;
+				box-sizing:border-box ;
 			}
 
 			.goods-name-tag1 {
-				color: rgb(70, 165, 70);
-				border: green 2rpx solid;
+				color: green;
+				border:2rpx solid green;
 			}
 
 			.goods-name-tag2 {
@@ -179,9 +180,7 @@
 			}
 
 			.goods-name {
-
 				/* #ifndef APP-NVUE   */
-				display: -webkit-box;
 				/* #endif  */
 				-webkit-box-orient: vertical;
 				-webkit-line-clamp: 2;
