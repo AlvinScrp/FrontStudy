@@ -1,0 +1,15 @@
+component: website
+name: website-cwBvLAw7Xx
+org: '1251420592'
+app: jd-home-html-like
+stage: prod
+inputs:
+  src:
+    src: ./
+    index: index.html
+    error: index.html
+  region: ap-shanghai
+  bucketName: my-bucket-jntsayz
+  protocol: http
+  isAutoCiDeploy: false
+  replace: false
