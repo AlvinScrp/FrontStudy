@@ -1,0 +1,32 @@
+<html lang="en">
+
+<body>
+    <!-- <script src="1_Reactivity.js"></script> -->
+    <!-- Reactivity -->
+    <!-- <script src="2_Computed.js"></script>
+    computed -->
+
+    <!-- <script src="3_Vue3_Reactivity.js"></script> -->
+    3_Vue3_Reactivity
+
+    <div>{{state.count}}</div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script setup>
+
+        const { reactive, watchEffect } = Vue
+        const state = reactive({ count: 1 })
+        console.log(state)
+        watchEffect(() => {
+            console.log(state.count)
+        }, {
+            onTrack(e) {
+                debugger
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>
