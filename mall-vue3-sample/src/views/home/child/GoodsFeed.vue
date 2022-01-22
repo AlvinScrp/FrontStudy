@@ -80,10 +80,11 @@ watchEffect(() => {
     }
 
 })
+
 const priceFormat = (goods: Goods) => `${goods.sellPrice / 100.0}`
+const router = useRouter()
 const itemClick = (goods: Goods) => {
-    // const router = useRouter()
-    // router.push({ path: '/goods' })
+    router.push({ path: '/goods' })
     console.log('goods onclick', goods)
 }
 </script>

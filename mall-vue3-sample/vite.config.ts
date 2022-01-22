@@ -32,5 +32,9 @@ export default defineConfig({
             '@assets': resolve('./src/assets'),
             '@network': resolve('./src/network')
         }
-    }
+    },
+    server: {
+        host: '0.0.0.0',
+        open: true,
+      },
 })

@@ -15,7 +15,7 @@
   "scripts": {
     "dev": "vite",
     "start": "npm run dev",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vite build",
     "serve": "vite preview",
     "lint": "eslint --ext .js,.jsx,.vue,.ts,.tsx src",
     "generate": "plop"

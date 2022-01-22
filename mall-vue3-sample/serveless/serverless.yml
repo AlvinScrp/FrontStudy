@@ -1,0 +1,15 @@
+component: website
+name: website-AyQj-MCegx
+org: '1251420592'
+app: mall-vue3-sample
+stage: dev
+inputs:
+  src:
+    src: ../dist
+    index: index.html
+    error: index.html
+  region: ap-shanghai
+  bucketName: my-bucket-9t26bd7
+  protocol: http
+  isAutoCiDeploy: false
+  replace: false
