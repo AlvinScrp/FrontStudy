@@ -1,0 +1,6 @@
+<!--pages/message/index.wxml-->
+<text>pages/message/index.wxml</text>
+<view>{{numA}} + {{numB}} = {{sum}}</view>
+<button type="primary"
+  bindtap="btnHandler"
+  data-step="{{1}}">numA + 1</button>

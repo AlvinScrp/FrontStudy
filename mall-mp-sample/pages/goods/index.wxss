@@ -1,0 +1,67 @@
+/* pages/goods/index.wxss */
+.goods {
+  padding: 24rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.pic {
+  border-radius: 20rpx;
+  width: 200rpx;
+  height: 200rpx;
+  background-color: red;
+  flex-shrink: 0;
+}
+
+.right {
+  margin-left: 24rpx;
+  flex-shrink: 1;
+}
+
+.title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: black;
+  font-size: 30rpx;
+  line-height: 40rpx;
+}
+
+
+.labels {
+  margin-top: 16rpx;
+  display: flex;
+  flex-direction: row;
+  margin-top: 16rpx;
+}
+
+
+.label {
+  padding-left: 4rpx;
+  padding-right: 4rpx;
+  font-size: 24rpx;
+  color: pink;
+  border: pink solid 2rpx;
+  border-radius: 4rpx;
+}
+
+.labels .label:not(:first-child) {
+  margin-left: 12rpx;
+}
+
+.commission {
+  margin-top: 24rpx;
+  color: red;
+  font-size: clamp(26rpx, 26rpx, 30rpx);
+}
+
+.no-more {
+  width: 100%;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+  color: #cccccc;
+
+}

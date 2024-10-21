@@ -1,0 +1,48 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/message/index",
+    "pages/index/index",
+    "pages/contact/index",
+    "pages/info/index",
+    "pages/goods/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#ff4b6b",
+    "navigationBarTitleText": "几号",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#ff4b6b",
+    "onReachBottomDistance": 100,
+    "enablePullDownRefresh": true
+  },
+  "style": "v2",
+  "tabBar": {
+    "position": "bottom",
+    "borderStyle": "black",
+    "selectedColor": "#ff4b6b",
+    "backgroundColor": "#f1f1ff",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页",
+        "iconPath": "/images/tabs/home.png",
+        "selectedIconPath": "/images/tabs/home-active.png"
+      },
+      {
+        "pagePath": "pages/message/index",
+        "text": "消息",
+        "iconPath": "/images/tabs/message.png",
+        "selectedIconPath": "/images/tabs/message-active.png"
+      },
+      {
+        "pagePath": "pages/contact/index",
+        "text": "我的",
+        "iconPath": "/images/tabs/contact.png",
+        "selectedIconPath": "/images/tabs/contact-active.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

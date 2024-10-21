@@ -1,0 +1,21 @@
+<view class="wrapper">
+  <view>这里是组件的内部节点</view>
+  <view>{{sum}}</view>
+  <view>{{a}}</view>
+  <view>{{b}}</view>
+  <view class="class-f">
+    <slot bind:tap="onFirstTap"
+      name="first"></slot>
+  </view>
+  <slot name="second"></slot>
+  <view>myBehaviorPA: {{myBehaviorPA}}</view>
+  <view>myProperty: {{myProperty}}</view>
+  <view>myData: {{myData}}</view>
+  <view>myBehaviorDA: {{myBehaviorDA}}</view>
+  <button bindtap="myBehaviorMethod">点击触发 behavior 方法</button>
+  <button bindtap="myMethod">点击触发 component 方法</button>
+  <button bindtap="changeNum1"
+    data-num="{{100}}">change num1</button>
+  <button bindtap="changeNum2"
+    data-num="{{200}}">change num2</button>
+</view>

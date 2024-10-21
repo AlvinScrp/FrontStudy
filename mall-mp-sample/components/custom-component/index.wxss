@@ -1,0 +1,11 @@
+/* components/custom-component/index.wxss */
+
+.wrapper {
+  background-color: greenyellow;
+  width: 100%;
+  padding: 24rpx;
+}
+
+/* :host {
+  color: blue;
+} */
