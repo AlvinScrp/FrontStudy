@@ -1,0 +1,13 @@
+<view class="tabs; iphone-x-bottom">
+  <view class="tab"
+    bind:tap="onTabClick"
+    data-index="{{idx}}"
+    wx:for="{{tabs}}"
+    wx:for-index="idx"
+    wx:for-item="tab">
+    <image class="tab-image"
+      src="{{active==idx?tab.selectedIconPath:tab.iconPath}}"
+      mode="aspectFill" />
+    <view class="tab-text; {{active==idx?'tab-text-active':''}}">{{tab.text}}</view>
+  </view>
+</view>

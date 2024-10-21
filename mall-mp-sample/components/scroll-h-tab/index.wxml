@@ -1,0 +1,15 @@
+<!--components/scroll-tab/index.wxml-->
+<scroll-view class="scroll-h"
+  scroll-y="{{false}}"
+  show-scrollbar="{{false}}"
+  scroll-x="{{true}}">
+  <view class="scroll-h-item"
+    bind:tap="onTabClick"
+    data-key="{{item.key}}"
+    id="{{item.key}}"
+    wx:for="{{tabItems}}">
+    <view class="scroll-h-item-text; {{item.key===selectKey?'text-active':''}}">{{item.text}}</view>
+    <view class="scroll-h-item-underline; {{item.key===selectKey?'underline-active':''}}"></view>
+  </view>
+
+</scroll-view>

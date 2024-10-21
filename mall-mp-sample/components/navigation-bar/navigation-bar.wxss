@@ -1,0 +1,29 @@
+.weui-navigation-bar {
+  --weui-FG-0: rgba(0, 0, 0, .9);
+  --height: 44px;
+  --left: 16px;
+}
+
+.weui-navigation-bar .android {
+  --height: 48px;
+}
+
+.weui-navigation-bar {
+  overflow: hidden;
+  color: var(--weui-FG-0);
+  flex: none;
+}
+
+.weui-navigation-bar__inner {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: calc(var(--height) + env(safe-area-inset-top));
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-top: env(safe-area-inset-top);
+  width: 100%;
+  box-sizing: border-box;
+}

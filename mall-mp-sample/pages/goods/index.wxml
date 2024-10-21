@@ -1,0 +1,21 @@
+<!--pages/goods/index.wxml-->
+<view>
+  <view class="goods"
+    wx:for="{{list}}"
+    wx:key="pitemId">
+    <image class="pic"
+      src="http://cdn.webuy.ai/{{item.pitemHeadPic}}"
+      mode="aspectFill" />
+    <view class="right">
+      <view class="title">{{item.pitemTitle}}</view>
+      <view class="labels">
+        <view wx:for="{{item.labelListV2}}"
+          wx:for-item="label"
+          class="label">{{label.labelName}}</view>
+      </view>
+      <view class="commission">{{item.commissionDesc}}</view>
+    </view>
+  </view>
+  <view wx:if="{{noMoreData}}"
+    class="no-more">没有更多数据了</view>
+</view>

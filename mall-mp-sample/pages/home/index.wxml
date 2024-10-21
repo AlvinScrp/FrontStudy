@@ -1,0 +1,53 @@
+<!--pages/home/index.wxml-->
+<view>
+  <navigation-bar back="{{false}}"
+    homeButton="{{false}}">
+    <view class="toolbar">
+      <image class="avatar"
+        src="{{avatar}}"
+        mode="aspectFill" />
+      <view class="search">
+        <image class="search-icon"
+          src="../../images/search.png"
+          mode="aspectFill" />
+        <swiper class="search-swiper"
+          autoplay="true"
+          interval="{{1500}}"
+          circular="true"
+          vertical="true">
+          <swiper-item class="search-swiper-item"
+            wx:for="{{searchKeys}}">
+            {{item}}
+          </swiper-item>
+        </swiper>
+
+      </view>
+    </view>
+  </navigation-bar>
+  <swiper class="banners"
+    indicator-dots="true"
+    indicator-color="rgba(255, 255, 255, .3)"
+    indicator-active-color="#ffffff"
+    autoplay="{{autoplay}}"
+    interval="{{interval}}"
+    circular>
+
+    <swiper-item wx:key="*this"
+      class="banner"
+      wx:for="{{banners}}">
+      <image class="banner-image"
+        src="{{item}}"
+        mode="aspectFill" />
+
+    </swiper-item>
+  </swiper>
+
+  <scroll-h-tab tab-items="{{tabItems}}"
+    select-index="{{tabIndex}}"
+    bind:onTabClick="onTabClick">
+  </scroll-h-tab>
+
+
+  <bottom-tab page-key="home" />
+
+</view>

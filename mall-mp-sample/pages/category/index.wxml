@@ -1,0 +1,3 @@
+<!--pages/category/index.wxml-->
+<text>pages/category/index.wxml</text>
+<bottom-tab page-key="category"  />
