@@ -1,52 +1,37 @@
 // pages/home/index.js
 import { createStoreBindings } from 'mobx-miniprogram-bindings'
 import { store } from '../../store/index'
+import { fetchHome } from '../../services/home/home';
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    infos: [1, 2, 3, 4, 5, 6, 7],
-    banners: [],
-    tools: [],
-    custom: {
-      pa: "papa",
-      pb: "pbpb"
-    }
+    imgSrcs: [],
+    tabList: [],
+    goodsList: [],
+    goodsListLoadStatus: 0,
+    pageLoading: false,
+    current: 1,
+    autoplay: true,
+    duration: '500',
+    interval: 5000,
+    navigation: { type: 'dots' },
+    swiperImageProps: { mode: 'scaleToFill' },
 
   },
 
-  onSelectComponetClick() {
-    const child = this.selectComponent(".c-c");
-    console.log(child);
-    const child2 = this.selectComponent("#c-c-id");
-    console.log(child2);
-  },
-  onFirstClick(e) {
-    console.log("onFirstClick:", e.currentTarget.dataset.index)
-    console.log("onFirstClick:", e.detail)
-  },
+
   async getInfo() {
-    const { data: bannerData } = await wx.p.request({
-      url: 'https://api.hjdshop.cc/banners',
-      method: 'POST',
-      data: {
-        name: "a1",
-        age: 1022
-      }
-    })
-    const { data: toolsData } = await wx.p.request({
-      url: 'https://api.hjdshop.cc/tools',
-      method: 'POST',
-      data: {
-        name: "a",
-        age: 102
-      }
-    })
-    this.setData({
-      banners: bannerData.entry.banner,
-      tools: toolsData.entry.tools
-    })
+    fetchHome().then(({ swiper, tabList }) => {
+      this.setData({
+        tabList,
+        imgSrcs: swiper,
+        pageLoading: false,
+      });
+      // this.loadGoodsList(true);
+    });
+
   },
 
   onToolClick(e) {
