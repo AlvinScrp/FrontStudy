@@ -1,30 +1,6 @@
 <!--pages/home/index.wxml-->
+<import src="../../template/tab-bottom/index.wxml" />
 <view>
-  <!-- <custom-component id="c-c-id"
-    my-behavior-p-a="behavior-property"
-    my-property="my-property"
-    class="c-c"
-    a="{{custom.pa}}"
-    b="{{custom.pb}}"
-    bind:firstClickEvent="onFirstClick"
-    data-index="111"
-    class-f="first">
-    <view slot="first">fill slot first</view>
-    <view slot="second">fill slot second</view>
-  </custom-component>
-
-  <button bind:tap="onSelectComponetClick">Select Componet</button>
-
-
-  <navigator url="/pages/info/index">navigate info</navigator>
-  <navigator url="/pages/contact/index"
-    open-type="switchTab">navigate contact</navigator>
-  <button bind:tap="navigateIndex">navigate index</button> -->
-
-  <button type="danger"
-    bindtap="btnHandler"
-    data-step="{{-1}}">numB - 1</button>
-
   <swiper class="banners"
     indicator-dots="true"
     indicator-color="#e1e1e1"
@@ -57,4 +33,6 @@
     </view>
 
   </view>
+  <template is="bottom" />
+
 </view>

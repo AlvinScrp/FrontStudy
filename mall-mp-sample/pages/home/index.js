@@ -15,6 +15,7 @@ Page({
     }
 
   },
+
   onSelectComponetClick() {
     const child = this.selectComponent(".c-c");
     console.log(child);
@@ -85,15 +86,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
+    console.log("home onReady");
     this.getInfo()
 
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow() {
-
+    console.log("home onShow");
+    this.getTabBar().init();
   },
 
   /**

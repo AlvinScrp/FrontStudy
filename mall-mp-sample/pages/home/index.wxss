@@ -1,4 +1,5 @@
 /* pages/home/index.wxss */
+@import '../../template/tab-bottom/index.wxss';
 
 .first {
   background-color: blanchedalmond;

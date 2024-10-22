@@ -1,7 +1,0 @@
-<!--pages/info/index.wxml-->
-<text>pages/info/index.wxml</text>
-<button>
-  <navigator open-type="navigateBack"
-    delta="1">返回上一页</navigator>
-</button>
-<button bind:tap="navBack">返回上一页2</button>

@@ -1,45 +1,48 @@
 {
   "pages": [
     "pages/home/index",
-    "pages/message/index",
-    "pages/index/index",
-    "pages/contact/index",
-    "pages/info/index",
-    "pages/goods/index"
+    "pages/category/index",
+    "pages/cart/index",
+    "pages/mine/index",
+    "pages/goods/index",
+    "pages/order/index"
   ],
   "window": {
-    "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#ff4b6b",
-    "navigationBarTitleText": "几号",
-    "navigationBarTextStyle": "white",
-    "backgroundColor": "#ff4b6b",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "mall-mp",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#ffffff",
     "onReachBottomDistance": 100,
     "enablePullDownRefresh": true
   },
   "style": "v2",
   "tabBar": {
-    "position": "bottom",
-    "borderStyle": "black",
-    "selectedColor": "#ff4b6b",
-    "backgroundColor": "#f1f1ff",
+    "custom": true,
     "list": [
       {
         "pagePath": "pages/home/index",
         "text": "首页",
-        "iconPath": "/images/tabs/home.png",
-        "selectedIconPath": "/images/tabs/home-active.png"
+        "iconPath": "/images/tabbar/home.png",
+        "selectedIconPath": "/images/tabbar/home-active.png"
       },
       {
-        "pagePath": "pages/message/index",
-        "text": "消息",
-        "iconPath": "/images/tabs/message.png",
-        "selectedIconPath": "/images/tabs/message-active.png"
+        "pagePath": "pages/category/index",
+        "text": "分类",
+        "iconPath": "/images/tabbar/category.png",
+        "selectedIconPath": "/images/tabbar/category-active.png"
       },
       {
-        "pagePath": "pages/contact/index",
+        "pagePath": "pages/cart/index",
+        "text": "购物车",
+        "iconPath": "/images/tabbar/cart.png",
+        "selectedIconPath": "/images/tabbar/cart-active.png"
+      },
+      {
+        "pagePath": "pages/mine/index",
         "text": "我的",
-        "iconPath": "/images/tabs/contact.png",
-        "selectedIconPath": "/images/tabs/contact-active.png"
+        "iconPath": "/images/tabbar/mine.png",
+        "selectedIconPath": "/images/tabbar/mine-active.png"
       }
     ]
   },
