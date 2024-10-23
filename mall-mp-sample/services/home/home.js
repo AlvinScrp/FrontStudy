@@ -17,7 +17,7 @@ function mockFetchHome() {
           key: 1,
         },
         {
-          text: '二胎大作战',
+          text: '天天大作战',
           key: 2,
         },
         {

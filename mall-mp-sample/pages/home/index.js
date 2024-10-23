@@ -2,13 +2,17 @@
 import { createStoreBindings } from 'mobx-miniprogram-bindings'
 import { store } from '../../store/index'
 import { fetchHome } from '../../services/home/home';
+
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    imgSrcs: [],
-    tabList: [],
+    avatar: "",
+    searchKeys: ['iphone 16 火热发售中', '你好朋友', '搜一搜 有好东西'],
+    banners: [],
+    tabItems: [],
+    tabIndex:0,
     goodsList: [],
     goodsListLoadStatus: 0,
     pageLoading: false,
@@ -26,7 +30,7 @@ Page({
     fetchHome().then(({ swiper, tabList }) => {
       this.setData({
         tabList,
-        imgSrcs: swiper,
+        banners: swiper,
         pageLoading: false,
       });
       // this.loadGoodsList(true);
@@ -60,6 +64,8 @@ Page({
       store,
       actions: ['updateNum2']
     })
+    const app = getApp();
+    this.setData({ avatar: app.globalData.avatar })
   },
 
   btnHandler(e) {
@@ -78,7 +84,6 @@ Page({
 
   onShow() {
     console.log("home onShow");
-    this.getTabBar().init();
   },
 
   /**

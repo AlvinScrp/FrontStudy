@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "custom-component": "/components/custom-component/index"
+    "navigation-bar": "/components/navigation-bar/navigation-bar",
+    "bottom-tab": "/components/bottom-tab/index",
+    "scroll-tab": "/components/scroll-tab/index"
   }
 }

@@ -1,5 +1,0 @@
-/* template/tab-bottom/index.wxml */
-<template name="bottom">
-  <view class="tb"></view>
-
-</template>

@@ -1,5 +1,0 @@
-/* template/tab-bottom/index.wxss */
-.tb {
-  width: 100%;
-  height: 130rpx;
-}

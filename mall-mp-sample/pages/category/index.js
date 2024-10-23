@@ -27,7 +27,6 @@ Page({
    */
   onShow() {
     console.log("category onShow");
-    this.getTabBar().init()
   },
 
   /**

@@ -1,0 +1,44 @@
+@import "/common/common.wxss";
+
+.tabs {
+  position: fixed;
+  display: flex;
+  height: 100rpx;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  background-color: #f8f8f8;
+  border-top: solid;
+  border-color: #eee;
+  border-width: 1rpx;
+  z-index: 99;
+  bottom: 0;
+
+
+}
+
+
+.tab {
+  padding-top: 12rpx;
+  height: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.tab-image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.tab-text {
+  margin-top: 6rpx;
+  font-size: 24rpx;
+  color: black;
+}
+
+.tab-text-active {
+  color: palevioletred;
+}

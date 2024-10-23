@@ -1,12 +1,35 @@
 <!--pages/home/index.wxml-->
-<import src="../../template/tab-bottom/index.wxml" />
 <view>
+  <navigation-bar back="{{false}}"
+    homeButton="{{false}}">
+    <view class="toolbar">
+      <image class="avatar"
+        src="{{avatar}}"
+        mode="aspectFill" />
+      <view class="search">
+        <image class="search-icon"
+          src="../../images/search.png"
+          mode="aspectFill" />
+        <swiper class="search-swiper"
+          autoplay="true"
+          interval="{{1500}}"
+          circular="true"
+          vertical="true">
+          <swiper-item class="search-swiper-item"
+            wx:for="{{searchKeys}}">
+            {{item}}
+          </swiper-item>
+        </swiper>
+
+      </view>
+    </view>
+  </navigation-bar>
   <swiper class="banners"
     indicator-dots="true"
-    indicator-color="#e1e1e1"
-    indicator-active-color="#000000"
-    autoplay="true"
-    interval="2000"
+    indicator-color="rgba(255, 255, 255, .3)"
+    indicator-active-color="#ffffff"
+    autoplay="{{autoplay}}"
+    interval="{{interval}}"
     circular>
 
     <swiper-item wx:key="*this"
@@ -19,20 +42,12 @@
     </swiper-item>
   </swiper>
 
-  <view class="tools">
-    <view class="tool"
-      bind:tap="onToolClick"
-      data-tool="{{item}}"
-      wx:for="{{tools}}">
-      <image src="{{item.image}}"
-        mode="aspectFill"
-        class="tool-image" />
-      <view class="tool-name">
-        {{item.name}}
-      </view>
-    </view>
+  <scroll-tab tab-items="{{tabItems}}"
+    select-index="{{tabIndex}}"
+    bind:onTabChange="onTabChange">
+  </scroll-tab>
 
-  </view>
-  <template is="bottom" />
+
+  <bottom-tab page-key="home" />
 
 </view>
