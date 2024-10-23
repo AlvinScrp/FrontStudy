@@ -2,6 +2,6 @@
   "usingComponents": {
     "navigation-bar": "/components/navigation-bar/navigation-bar",
     "bottom-tab": "/components/bottom-tab/index",
-    "scroll-tab": "/components/scroll-tab/index"
+    "scroll-h-tab": "/components/scroll-h-tab/index"
   }
 }

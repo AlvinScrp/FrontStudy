@@ -12,7 +12,7 @@ Page({
     searchKeys: ['iphone 16 火热发售中', '你好朋友', '搜一搜 有好东西'],
     banners: [],
     tabItems: [],
-    tabIndex:0,
+    tabIndex: 0,
     goodsList: [],
     goodsListLoadStatus: 0,
     pageLoading: false,
@@ -29,7 +29,7 @@ Page({
   async getInfo() {
     fetchHome().then(({ swiper, tabList }) => {
       this.setData({
-        tabList,
+        tabItems: tabList,
         banners: swiper,
         pageLoading: false,
       });
@@ -38,23 +38,11 @@ Page({
 
   },
 
-  onToolClick(e) {
-    let tool = e.currentTarget.dataset.tool
-    console.log(tool)
-    wx.navigateTo({
-      url: `/pages/goods/index?title=${tool.name}&id=${tool.id}`,
-
-    })
-
+  onTabClick(e) {
+    console.log("onTabClick ", e.detail.key);
   },
-  navigateIndex() {
-    // wx.navigateTo({
-    //   url: '/pages/info/index',
-    // })
-    wx.switchTab({
-      url: '/pages/contact/index',
-    })
-  },
+
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -68,9 +56,7 @@ Page({
     this.setData({ avatar: app.globalData.avatar })
   },
 
-  btnHandler(e) {
-    this.updateNum2(e.target.dataset.step)
-  },
+
 
 
   /**

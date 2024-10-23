@@ -42,10 +42,10 @@
     </swiper-item>
   </swiper>
 
-  <scroll-tab tab-items="{{tabItems}}"
+  <scroll-h-tab tab-items="{{tabItems}}"
     select-index="{{tabIndex}}"
-    bind:onTabChange="onTabChange">
-  </scroll-tab>
+    bind:onTabClick="onTabClick">
+  </scroll-h-tab>
 
 
   <bottom-tab page-key="home" />
