@@ -1,0 +1,19 @@
+<script>
+
+  function Article() {
+    this.title = 'Inauguration Ceremony Features Kazoo Band';
+    this.author = 'kevin'
+  }
+  let a1 = new Article();
+  let a2 = new Article();
+  console.log(a1.author)
+  a2.author = 'kevin'
+  console.log(a1.author)
+  console.log(a2.author)
+
+
+  Object.keys(a2).forEach(key => {
+    console.log(`${key}: ${a2[key]}`);
+  });
+
+</script>
