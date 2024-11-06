@@ -11,3 +11,13 @@ addTen(8).then(console.log); // 18
 
 let value = [1, 2, 3, 4].reduce((p, v) => p + v, 10);
 console.log(value);
+
+let obj = {
+  a: {
+    b: {
+      c: 1
+    }
+  }
+};
+console.log(obj.a?.d?.e);
+
