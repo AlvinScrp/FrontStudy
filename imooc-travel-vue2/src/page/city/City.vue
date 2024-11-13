@@ -289,6 +289,7 @@ export default {
     overflow-y: auto;
     scrollbar-width: none;
     .city-letter {
+      text-align: start;
       background-color: #edf5f9;
       position: sticky;
       top: 0;
@@ -304,6 +305,7 @@ export default {
     }
   }
   .city-list-item {
+    text-align: start;
     padding-left: 12px;
     background-color: #fff;
     height: 40px;

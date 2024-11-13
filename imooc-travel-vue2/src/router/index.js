@@ -10,8 +10,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    // component: HomeView
-    component: DetailView
+    component: HomeView
   },
   {
     path: '/city',

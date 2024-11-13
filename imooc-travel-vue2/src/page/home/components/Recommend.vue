@@ -1,7 +1,12 @@
 <template>
   <div>
     <div class="recommend-title">热销推荐</div>
-    <div v-for="item in hotList" :key="item.id" class="hot-item">
+    <div
+      v-for="item in hotList"
+      :key="item.id"
+      @click="$emit('item-click')"
+      class="hot-item"
+    >
       <img class="hot-image" :src="item.imgUrl" alt="" />
       <div class="hot-right">
         <div class="hot-title">{{ item.title }}</div>
@@ -38,6 +43,7 @@ export default {
   background-color: #f5f5f5;
 }
 .hot-item {
+  text-align: start;
   padding: 12px;
   display: flex;
 

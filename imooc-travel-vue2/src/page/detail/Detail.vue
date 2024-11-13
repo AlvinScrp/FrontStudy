@@ -3,7 +3,7 @@
     <detail-header :scrollTop="scrollTop" class="header"></detail-header>
     <div class="body" @scroll="handleBodyScroll">
       <detail-banner class="banner" :product="product"></detail-banner>
-      <!--
+
       <detail-info :product="product"></detail-info>
       <div class="space10 bg-gray top-line"></div>
       <detail-product-list
@@ -15,7 +15,7 @@
       <div class="bg-white">
         <div class="line-space-gray mrglf12"></div>
       </div>
-      <rating-crowd :comment="product.comment"></rating-crowd>-->
+      <rating-crowd :comment="product.comment"></rating-crowd>
       <rating-bd :comment="product.comment"></rating-bd>
       <div class="space10 bg-gray"></div>
       <intro-tabbar
@@ -23,9 +23,14 @@
         :selectedKey="introTabInfo.selectedKey"
         class="intro-tab"
       ></intro-tabbar>
-      <detail-cost></detail-cost>
-      <detail-schedule></detail-schedule>
-      <detail-features></detail-features>
+      <detail-cost :costDesc="product.costDesc"></detail-cost>
+      <div class="space10 bg-gray"></div>
+      <detail-schedule
+        :schedule-title="product.scheduleTitle"
+        :schedule-tours="product.scheduleTours"
+      ></detail-schedule>
+      <div class="space10 bg-gray"></div>
+      <detail-features :features="product.features"></detail-features>
     </div>
     <detail-bottom class="bottom"></detail-bottom>
 
@@ -80,6 +85,7 @@ export default {
       },
       product: {},
       introTabInfo: { tabs: [], selectedKey: "" },
+      costList: [],
     };
   },
   mounted() {
@@ -132,6 +138,7 @@ export default {
   }
   .body {
     overflow-y: scroll;
+    position: relative;
     height: 100vh;
     width: 100%;
 

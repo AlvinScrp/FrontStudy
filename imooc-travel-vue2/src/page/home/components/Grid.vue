@@ -2,7 +2,12 @@
   <div>
     <div class="icon-root">
       <div class="icon-wrraper" :style="wrraperStyleObj">
-        <div class="icon" v-for="icon in iconList" :key="icon.title">
+        <div
+          class="icon"
+          @click="$emit('item-click')"
+          v-for="icon in iconList"
+          :key="icon.title"
+        >
           <img class="icon-img" :src="icon.imgUrl" alt="" />
           <span class="icon-title">{{ icon.title }}</span>
         </div>

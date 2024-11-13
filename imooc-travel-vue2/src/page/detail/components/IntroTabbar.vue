@@ -30,6 +30,10 @@ export default {
 </script>
 <style lang='scss' scoped>
 .intro-tab {
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 3;
+  top: 40px;
   height: 49px;
   background-color: white;
   display: flex;
@@ -37,6 +41,18 @@ export default {
   justify-content: space-around;
   align-items: center;
   color: #212121;
+  &::after {
+    border: solid #f5f5f5;
+    border-width: 0 0 1px 0;
+    content: "\0020";
+    left: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    transform-origin: 0 0;
+    z-index: 3;
+  }
   .tab-item {
     height: 49px;
     display: inline-block;

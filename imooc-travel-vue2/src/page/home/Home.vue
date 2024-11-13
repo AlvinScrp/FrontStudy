@@ -3,8 +3,8 @@
     <home-header class="home-header"></home-header>
     <div class="home-header-space"></div>
     <banner :swiperList="swiperList"></banner>
-    <grid :iconList="iconList"></grid>
-    <recommend :hotList="hotList"></recommend>
+    <grid :iconList="iconList" @item-click="goDetail"></grid>
+    <recommend :hotList="hotList" @item-click="goDetail"></recommend>
     <weekend :weekendList="weekendList"></weekend>
     <div class="home-bottom"></div>
   </div>
@@ -69,6 +69,10 @@ export default {
       } catch (error) {
         console.error("error fetch data", error);
       }
+    },
+    goDetail() {
+      console.log("goDetail");
+      this.$router.push("/detail");
     },
   },
 };
