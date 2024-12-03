@@ -1,0 +1,7 @@
+.hello{
+  display: flex;
+   /* autoprefixer should add prefixes like -webkit-box, -ms-flexbox */
+}
+.b{
+  color: pink;
+}
