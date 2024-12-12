@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>vuejs3-c5</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <script src="./vue.js"></script> -->
+  </head>
+
+  <body>
+    <div id="output">sss</div>
+    <script>
+      function proxy(data) {
+        return new Proxy(data, {
+          // 拦截读取操作
+          get(target, key) {
+            // 将副作用函数 activeEffect 添加到存储副作用函数的桶中
+            track(target, key);
+            // 返回属性值
+            return target[key];
+          },
+          // 拦截设置操作
+          set(target, key, newVal) {
+            // 设置属性值
+            target[key] = newVal;
+            // 把副作用函数从桶里取出并执行
+            trigger(target, key);
+          },
+        });
+      }
+
+      const bucket = new WeakMap();
+      let activeEffect;
+      let activeEffectStack = [];
+      // 在 get 拦截函数内调用 track 函数追踪变化
+      function track(target, key) {
+        // 没有 activeEffect，直接 return
+        // activeEffect = activeEffectStack.pop();
+        if (!activeEffect) return;
+        let depsMap = bucket.get(target);
+        if (!depsMap) {
+          bucket.set(target, (depsMap = new Map()));
+        }
+        let deps = depsMap.get(key);
+        if (!deps) {
+          depsMap.set(key, (deps = new Set()));
+        }
+        deps.add(activeEffect);
+        activeEffect.deps.push(deps);
+      }
+      // 在 set 拦截函数内调用 trigger 函数触发变化
+      function trigger(target, key) {
+        const depsMap = bucket.get(target);
+        if (!depsMap) return;
+        const effects = depsMap.get(key);
+        const effectsToRun = new Set();
+        effects &&
+          effects.forEach((effectFn) => {
+            if (effectFn !== activeEffect) {
+              effectsToRun.add(effectFn);
+            }
+          });
+        effectsToRun.forEach((fn) => {
+          if (fn.options.scheduler) {
+            fn.options.scheduler(fn);
+          } else {
+            fn();
+          }
+        });
+      }
+
+      function cleanup(effectFn) {
+        for (let i = 0; i < effectFn.deps.length; i++) {
+          const deps = effectFn.deps[i];
+          deps.delete(effectFn);
+        }
+        console.log('clean up');
+        effectFn.deps.length = 0;
+      }
+
+      function effect(fn, options = {}) {
+        const effectFn = () => {
+          cleanup(effectFn);
+          activeEffect = effectFn;
+          activeEffectStack.push(effectFn);
+          const result = fn(); // deps of obj.key  --> add activeEffect
+          activeEffectStack.pop();
+          activeEffect = activeEffectStack[activeEffectStack.length - 1];
+          return result;
+        };
+        effectFn.options = options;
+        effectFn.deps = [];
+        if (!options.lazy) {
+          effectFn();
+        }
+        // console.log('222');
+
+        return effectFn;
+        // effectFn();
+      }
+
+      (function () {
+        const obj = {
+          foo: 1,
+          get bar() {
+            console.log(this);
+            return this.foo;
+          },
+        };
+        const p = proxy(obj);
+        effect(() => {
+          console.log('bar', p.bar);
+        });
+        p.foo++;
+      })();
+    </script>
+  </body>
+</html>

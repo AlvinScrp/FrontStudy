@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>vuejs3-c4</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <script src="./vue.js"></script> -->
+  </head>
+
+  <body>
+    <div id="app">lll</div>
+    <script>
+      //微任务队列
+      const jobQueue = new Set();
+      const p = Promise.resolve();
+      let isFlushing = false;
+      function flushJob() {
+        if (isFlushing) return;
+        isFlushing = true;
+        p.then(() => {
+          jobQueue.forEach((job) => job());
+        }).finally(() => {
+          isFlushing = false;
+        });
+      }
+      const bucket = new WeakMap();
+      const data = { ok: true, text: 'kkkkk', foo: 1, bar: 2 };
+
+      function proxy(data) {
+        return new Proxy(data, {
+          // 拦截读取操作
+          get(target, key) {
+            // 将副作用函数 activeEffect 添加到存储副作用函数的桶中
+            track(target, key);
+            // 返回属性值
+            return target[key];
+          },
+          // 拦截设置操作
+          set(target, key, newVal) {
+            // 设置属性值
+            target[key] = newVal;
+            // 把副作用函数从桶里取出并执行
+            trigger(target, key);
+          },
+        });
+      }
+
+      const obj = proxy(data);
+      let activeEffect;
+      let activeEffectStack = [];
+
+      // 在 get 拦截函数内调用 track 函数追踪变化
+      function track(target, key) {
+        // 没有 activeEffect，直接 return
+        // activeEffect = activeEffectStack.pop();
+        if (!activeEffect) return;
+        let depsMap = bucket.get(target);
+        if (!depsMap) {
+          bucket.set(target, (depsMap = new Map()));
+        }
+        let deps = depsMap.get(key);
+        if (!deps) {
+          depsMap.set(key, (deps = new Set()));
+        }
+        deps.add(activeEffect);
+        activeEffect.deps.push(deps);
+      }
+      // 在 set 拦截函数内调用 trigger 函数触发变化
+      function trigger(target, key) {
+        const depsMap = bucket.get(target);
+        if (!depsMap) return;
+        const effects = depsMap.get(key);
+        const effectsToRun = new Set();
+        effects &&
+          effects.forEach((effectFn) => {
+            if (effectFn !== activeEffect) {
+              effectsToRun.add(effectFn);
+            }
+          });
+        effectsToRun.forEach((fn) => {
+          if (fn.options.scheduler) {
+            fn.options.scheduler(fn);
+          } else {
+            fn();
+          }
+        });
+      }
+
+      function effect(fn, options = {}) {
+        const effectFn = () => {
+          cleanup(effectFn);
+          activeEffect = effectFn;
+          activeEffectStack.push(effectFn);
+          const result = fn(); // deps of obj.key  --> add activeEffect
+          activeEffectStack.pop();
+          activeEffect = activeEffectStack[activeEffectStack.length - 1];
+          return result;
+        };
+        effectFn.options = options;
+        effectFn.deps = [];
+        if (!options.lazy) {
+          effectFn();
+        }
+        // console.log('222');
+
+        return effectFn;
+        // effectFn();
+      }
+
+      function watch(source, cb, options = { immediate: false, flush: 'post' }) {
+        let getter;
+        if (typeof source === 'function') {
+          getter = source;
+        } else {
+          getter = () => traverse(source);
+        }
+
+        let oldValue, newValue;
+        const job = () => {
+          newValue = effectFn();
+          cb(oldValue, newValue);
+          oldValue = newValue;
+        };
+        const effectFn = effect(() => getter(), {
+          lazy: true,
+          scheduler: () => {
+            if (options.flush === 'post') {
+              Promise.resolve().then(job);
+            } else {
+              job();
+            }
+          },
+        });
+
+        if (options.immediate) {
+          job();
+        } else {
+          oldValue = effectFn();
+        }
+      }
+      function traverse(value, seen = new Set()) {
+        if (typeof value !== 'object' || value === null || seen.has(value)) return;
+
+        seen.add(value);
+        for (const k in value) {
+          traverse(value[k], seen);
+        }
+        return value;
+      }
+
+      (function () {
+        console.log('---------');
+
+        let obj = proxy({ a: 1, b: 2 });
+        watch(
+          () => obj.a,
+          (p, c) => {
+            console.log('watch obj.a on change', p, c);
+          },
+          {
+            immediate: true,
+          }
+        );
+        setTimeout(() => {
+          obj.a = 4;
+        }, 400);
+        obj.a = 3;
+        console.log('---------');
+      })();
+
+      function cleanup(effectFn) {
+        for (let i = 0; i < effectFn.deps.length; i++) {
+          const deps = effectFn.deps[i];
+          deps.delete(effectFn);
+        }
+        console.log('clean up');
+        effectFn.deps.length = 0;
+      }
+
+      const effectFn = effect(
+        () => {
+          console.log(obj.foo, obj.bar);
+          return obj.foo + obj.bar;
+        },
+        {
+          lazy: true,
+          scheduler(effectToRun) {
+            // jobQueue.add(effectFnRun);
+            // flushJob();
+            effectToRun();
+          },
+        }
+      );
+      console.log('11111');
+
+      const value = effectFn();
+      console.log('sdsd', value);
+
+      function computed(getter) {
+        let value;
+        let dirty = true;
+        const effectFn = effect(getter, {
+          lazy: true,
+          scheduler(effectToRun) {
+            if (!dirty) {
+              console.log('effectToRun', effectToRun);
+              // effectToRun();
+              dirty = true;
+              trigger(obj, 'value');
+            }
+          },
+        });
+        const obj = {
+          get value() {
+            if (dirty) {
+              value = effectFn();
+              dirty = false;
+            }
+            track(obj, 'value');
+            return value;
+          },
+        };
+        return obj;
+      }
+
+      // const sumRes = computed(() => obj.foo + obj.bar);
+      // effect(() => {
+      //   console.log('sumRes', sumRes.value);
+      // });
+      // setTimeout(() => {
+      //   obj.foo++;
+      // }, 500);
+
+      //  effect(function () {
+      //     console.log('effect function');
+      //     document.body.innerText = obj.ok ? obj.text : 'not ok';
+      //   });
+
+      //   setTimeout(() => {
+      //     // obj.text = 'sdsdsdsds';
+      //     obj.ok = false;
+      //     obj.text = 'cccccc';
+      //   }, 1000);
+
+      // (function () {
+      //   let temp1, temp2;
+      //   effect(function effect1() {
+      //     console.log('effect1 执行');
+      //     temp1 = obj.foo;
+      //     effect(function effect2() {
+      //       temp2 = obj.bar;
+      //       console.log('effect2 执行', 'temp2', temp2);
+      //     });
+      //   });
+      // })();
+      // setTimeout(() => {
+      //   obj.foo = 300;
+      // }, 1000);
+
+      // console.log(temp1,temp2);
+    </script>
+  </body>
+</html>
