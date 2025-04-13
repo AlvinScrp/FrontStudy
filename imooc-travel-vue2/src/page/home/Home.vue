@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <home-header class="home-header"></home-header>
+    <!-- <home-header class="home-header"></home-header> -->
     <div class="home-header-space"></div>
     <banner :swiperList="swiperList"></banner>
     <grid :iconList="iconList" @item-click="goDetail"></grid>
@@ -18,6 +18,7 @@ import Recommend from "./components/Recommend.vue";
 import Weekend from "./components/Weekend.vue";
 import axios from "axios";
 import { mapState } from "vuex";
+import actions from "@/shared/actions";
 export default {
   name: "Home",
   components: { HomeHeader: Header, Banner, Grid, Recommend, Weekend },
@@ -30,10 +31,17 @@ export default {
       hotList: [],
       weekendList: [],
       scrollPosition: 0,
+      token: "",
     };
   },
   mounted() {
     this.loadHomeInfo();
+
+    actions.onGlobalStateChange(state => {
+      const { token } = state;
+      this.token = token;
+      console.log("子应用 onGlobalStateChange token", this.token);
+    }, true);
   },
   activated() {
     console.log("home activated");
@@ -52,8 +60,8 @@ export default {
         console.log("loadHomeInfo", this.globalCityName);
 
         this.lastRequestCity = cityName;
-        const response = await axios.get("/api/index.json?city=" + cityName);
-        // const response = await axios.get("/static/moc/index.json");
+        // const response = await axios.get("/api/index.json?city=" + cityName);
+        const response = await axios.get("http://localhost:8080/static/moc/index.json");
         let { city, swiperList, iconList, hotList, weekendList } =
           response.data.data;
 

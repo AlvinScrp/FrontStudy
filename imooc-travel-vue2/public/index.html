@@ -1,46 +1,44 @@
 <!DOCTYPE html>
 <html lang="">
-
-<head>
-  <meta charset="utf-8">
-  <meta
-    name="viewport"
-    content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,
     user-scalable=no"
-  >
-  <link
-    rel="icon"
-    href="<%= BASE_URL %>favicon.ico"
-  >
-  <link
-    rel="stylesheet"
-    href="//at.alicdn.com/t/c/font_4734498_91uxdtkv6rt.css"
-  />
+    />
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/c/font_4734498_91uxdtkv6rt.css"
+    />
 
-  <title>去哪儿</title>
-  <script>
-    function resize() {
-      window.remFontSize = (document.documentElement.clientWidth * 16) / 375;
-      document.documentElement.style.fontSize =
-        (document.documentElement.clientWidth * 16) / 375 + 'px';
-    }
-    var b = null;
-    window.addEventListener(
-      'resize',
-      function () {
-        clearTimeout(b), (b = setTimeout(resize, 300));
-      },
-      !1,
-    );
-    resize(); 
-  </script>
-</head>
+    <title>去哪儿</title>
+    <script>
+      function resize() {
+        window.remFontSize = (document.documentElement.clientWidth * 16) / 375;
+        document.documentElement.style.fontSize =
+          (document.documentElement.clientWidth * 16) / 375 + 'px';
+      }
+      if (window.__POWERED_BY_QIANKUN__) {
+        console.log('qiankun环境，不要 resize');
+      } else {
+        var b = null;
+        window.addEventListener(
+          'resize',
+          function () {
+            clearTimeout(b), (b = setTimeout(resize, 300));
+          },
+          !1
+        );
+        resize();
+        console.log('非qiankun环境，resize');
+      }
+    </script>
+  </head>
 
-<body>
-
-  <div id="app"></div>
-  <!-- built files will be auto injected -->
-
-</body>
-
+  <body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
 </html>

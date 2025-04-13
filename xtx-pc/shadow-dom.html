@@ -1,0 +1,68 @@
+<style>
+#shadow{
+  --bg:pink;
+  --color:blue;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  background-color: chocolate;
+}
+
+</style>
+<body>
+  <div id="app" class="app">
+    <input type="text">
+<input type="range">
+<video style="width: 200px; height: 100px;" src="https://tv-mis.cdn.bcebos.com/booktext/31168/syncclass/1150251480p/video.mp4" controls></video>
+<textarea></textarea>
+<div id="shadow"></div>
+
+  </div>
+
+  <wx-text>222222</wx-text>
+    <script>
+        class wxText extends HTMLElement {
+            constructor() {
+                super()
+                // console.log(this.innerText)
+                const text = this.innerText
+                this.innerText = null
+                const shadowRoot = this.attachShadow({mode: 'open'})
+                shadowRoot.innerHTML = `
+                    <span>${text}</span>
+                `
+            }
+        }
+
+        customElements.define('wx-text', wxText)
+    </script>
+
+</body>
+
+
+<!-- <script>
+  const root = document.querySelector('#shadow')
+  const shadowroot = root.attachShadow({mode: 'open'})
+  const template = `
+            <div class="wx-name">ssssss - kkkk</div>
+            <style>
+              .wx-name {
+                background-color: var(--bg,red);
+                color: var(--color,#000);
+              }
+            </style>
+        `
+shadowroot.innerHTML = template
+
+</script>
+ -->
+ <style>
+  .app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+</style>
+</html>
