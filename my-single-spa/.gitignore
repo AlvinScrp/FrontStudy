@@ -1,0 +1,7 @@
+/node_modules
+/dist
+/build
+/dist-ssr
+/dist-ssr-dev
+/dist-ssr-prod
+/dist-ssr-prod-dev
