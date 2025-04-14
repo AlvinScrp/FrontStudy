@@ -6,7 +6,7 @@
       <router-link to="/about">About</router-link> |
     </nav>
     <router-view/>
-    <div class="sub-container"></div>
+    <div class="sub-container" ></div>
   </div>
 </template>
 

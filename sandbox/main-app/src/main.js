@@ -13,8 +13,10 @@ const loadScript = async (url) => {
   })
 }
 
-window.__SINGLE_SPA__ = 1234
+window.__Alvin_SINGLE_SPA__ = true
 
+
+console.log('before registerApplication',document)
 // 注册子应用
 registerApplication({
   name: "sub1app",
@@ -24,8 +26,9 @@ registerApplication({
     return window.sub1app
   },
   activeWhen: ["/sub1"],
-  customProps: {
-    domElement: document.querySelector('sub-container')
+  customProps: ()=> {
+    //指定基座挂载点，也可以在子应用中指定
+    return {domElement: document.querySelector('.sub-container')}
   }
 })
 
