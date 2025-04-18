@@ -12,7 +12,9 @@
     "single-spa-vue": "^2.1.0",
     "vue": "^2.7.14",
     "vue-router": "^3.6.5",
-    "systemjs": "^6.8.3"
+    "systemjs": "^6.8.3",
+    "sass": "^1.80.6",
+    "sass-loader": "^10.4.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~5.0.8",

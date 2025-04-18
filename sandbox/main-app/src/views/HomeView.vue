@@ -1,17 +1,36 @@
 <template>
   <div class="home">
     main Home
+    <div id="homeSub"></div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import importHTML from 'import-html-entry';
+
 
 export default {
   name: 'HomeView',
-  components: {
-    HelloWorld
+  mounted() {
+    console.log('HomeView mounted')
+    // importHTML('http://localhost:8080/index.html').then(module => {
+    //   console.log(module)
+    //   console.log('template',module.template)
+    //   console.log('window',window)
+    //   module.execScripts(window).then(res => {
+    //     console.log('execScripts',res)
+    //     const { mount ,unmount,bootstrap ,update} = res
+    //     console.log('execScripts',mount)
+    //     mount({domElement:document.getElementById('homeSub')})
+    //     // res.mount(document.body)
+    //   })
+    //   module.getExternalScripts().then(res => {
+    //     console.log('getExternalScripts',res)
+    //   })
+    //   module.getExternalStyleSheets().then(res => {
+    //     console.log('getExternalStyleSheets',res)
+    //   })
+    // })
   }
 }
 </script>

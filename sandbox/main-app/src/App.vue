@@ -5,10 +5,30 @@
       <router-link to="/home">Home</router-link> |
       <router-link to="/about">About</router-link> |
     </nav>
+    <div style="display: flex;justify-content: center;align-items: center;">
+      <button @click="handleClick">get window flag</button>
+      <h2>{{ windowFlag }}</h2>
+    </div>
+
     <router-view/>
     <div class="sub-container" ></div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      windowFlag: window.aaaFlag
+    }
+  },
+  methods:{
+    handleClick(){
+      this.windowFlag = window.aaaFlag
+    }
+  }
+}
+</script>
 
 <style>
 #app {

@@ -7,6 +7,7 @@ const appOptions = {
   // el: "#sub-container",
   router,
   render: (h) => h(App),
+  // render: (h) => h('div', 'hello world'),
 }
 // // 在非子应用中正常挂载应用
 // if (!window.singleSpaNavigate) {
@@ -32,44 +33,27 @@ let vueInstance;
 
 // 子应用没有接入 single-spa
 if (!window.__Alvin_SINGLE_SPA__) {
-  new Vue(appOptions).$mount('#sub1-app')
+  new Vue(appOptions).$mount('#app')
 }
 
 // 提供 bootstrap 生命周期方法
-export function bootstrap () {
+export async function bootstrap () {
   console.log('sub1-app bootstrap')
-  return Promise.resolve().then(() => {
-
-  });
 }
 // 提供 mount 生命周期方法
-export function mount (props) {
-  console.log('sub1-app mount', props)
-  return Promise.resolve().then(() => {
-    if(props.domElement){
-     let div = document.createElement('div')
-      props.domElement.appendChild(div);
-      appOptions.el = div
-    }else{
-      if(!appOptions.el){
-        let div = document.createElement('div')
-        div.id = 'alvin-sub1-app'
-        document.body.appendChild(div)
-        appOptions.el =div
-      }
-    }
-    vueInstance = new Vue(appOptions)
-    // vueInstance.$mount(el)
-  })
+export async function mount (props) {
+  console.log('sub1-app kkkkkkkkkkk mount', props)
+  const {container} = props
+  console.log('sub1-app kkkkkkkkkkk mount.container',( props.container.toString()), props.container,)
+  new Vue(appOptions).$mount(container?container.querySelector('#app'):'#app')
 }
 
 // 提供 unmount 生命周期方法
-export function unmount () {
+export async function unmount () {
   console.log('sub1-app unmount',vueInstance.$el,vueInstance)
-  return Promise.resolve().then(() => {
-    vueInstance.$el.parentNode.removeChild(vueInstance.$el)
-    vueInstance.$destroy()
-  })
+  vueInstance.$el.innerHTML = '';
+  vueInstance.$destroy()
+  vueInstance=null
 }
 
 // 提供 update 生命周期方法

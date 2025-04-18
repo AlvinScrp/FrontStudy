@@ -1,5 +1,5 @@
 <template>
-  <div id="sub1-app">
+  <div class="app" id="app">
     <nav>
       <router-link to="/">Sub1 Home</router-link> |
       <router-link to="/about">Sub1 About</router-link>
@@ -8,13 +8,14 @@
   </div>
 </template>
 
-<style>
-#sub-app {
+<style lang="scss" scoped>
+.app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: gray;
 }
 
 nav {
