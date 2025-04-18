@@ -9,7 +9,7 @@ Vue.config.productionTip = false;
 registerMicroApps([
   {
     name: 'imooc-travel-vue', // app name registered
-    entry: '//localhost:8080',
+    entry: '//localhost:6600',
     container: '#yd-container',
     activeRule: (location) => {
       console.log('location', location.pathname);

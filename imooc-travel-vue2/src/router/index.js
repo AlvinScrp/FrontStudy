@@ -37,7 +37,7 @@ let mode = 'history';
 //   base = '/travel/';
 // } else
 if (isQiankun) {
-  base = '/travel/';
+  base = '/travel';
 }
 
 console.log('路由配置:', { base, mode,/* isWujie,*/ isQiankun });

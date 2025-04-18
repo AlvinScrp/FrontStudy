@@ -61,7 +61,7 @@ export default {
 
         this.lastRequestCity = cityName;
         // const response = await axios.get("/api/index.json?city=" + cityName);
-        const response = await axios.get("http://localhost:8080/static/moc/index.json");
+        const response = await axios.get("http://localhost:6600/static/moc/index.json");
         let { city, swiperList, iconList, hotList, weekendList } =
           response.data.data;
 
