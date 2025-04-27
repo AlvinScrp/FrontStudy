@@ -1,10 +1,201 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <title>Qiankun</title>
-    <script src="./index.js"></script>
+    <title>Web Component Demo</title>
+    <meta charset="UTF-8" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background: #f0f0f0;
+      }
+      .theme-selector {
+        margin-bottom: 20px;
+        padding: 10px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .theme-selector select {
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        margin-right: 10px;
+      }
+      .theme-selector button {
+        padding: 8px 16px;
+        background: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .theme-selector button:hover {
+        background: #45a049;
+      }
+      .custom-content {
+        margin-top: 20px;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+    </style>
   </head>
   <body>
-    <div id="root">
-      hello world
+    <h1>Web Component Demo</h1>
+
+    <div class="theme-selector">
+      <select id="themeSelect">
+        <option value="default">默认主题</option>
+        <option value="dark">深色主题</option>
+        <option value="pink">粉色主题</option>
+        <option value="orange">橙色主题</option>
+      </select>
+      <button onclick="applyTheme()">应用主题</button>
     </div>
+
+    <template id="userCardTemplate">
+      <style>
+        :host {
+          --primary-color: #4caf50;
+          --primary-hover-color: #45a049;
+          --text-primary-color: #333;
+          --text-secondary-color: #666;
+          --background-color: #f5f5f5;
+          --border-radius: 8px;
+          --spacing: 20px;
+        }
+
+        .wrapper {
+          display: flex;
+          padding: var(--spacing);
+          background: var(--background-color);
+          border-radius: var(--border-radius);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+          margin-left: var(--spacing);
+        }
+        .name {
+          font-size: 24px;
+          margin: 0 0 10px 0;
+          color: var(--text-primary-color);
+        }
+        .action-button {
+          padding: 8px 16px;
+          background: var(--primary-color);
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: background 0.3s;
+        }
+
+        ::slotted(.name) {
+          font-size: 24px;
+          margin: 0 0 10px 0;
+          color: var(--text-primary-color);
+        }
+
+        ::slotted(.action-button) {
+          padding: 8px 16px;
+          background: var(--primary-color);
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: background 0.3s;
+        }
+
+        ::slotted(.action-button:hover) {
+          background: var(--primary-hover-color);
+        }
+      </style>
+      <div class="wrapper">
+        <div class="container">
+          <slot name="name">
+            <p class="name">yong.cai</p>
+          </slot>
+          <slot name="action">
+            <button class="action-button">关注</button>
+          </slot>
+        </div>
+      </div>
+    </template>
+
+    <!-- 默认卡片 -->
+    <user-card id="userCard"></user-card>
+
+    <!-- 自定义内容示例 -->
+    <div class="custom-content">
+      <h3>自定义内容示例：</h3>
+      <user-card>
+        <p slot="name" class="name">Elyse Smith</p>
+        <button class="action-button" slot="action" onclick="frendReqest('已发送好友请求')">添加好友</button>
+      </user-card>
+    </div>
+
+    <script src="./index.js"></script>
+    <script>
+      const themes = {
+        default: {
+          '--primary-color': '#4CAF50',
+          '--primary-hover-color': '#45a049',
+          '--text-primary-color': '#333',
+          '--text-secondary-color': '#666',
+          '--background-color': '#f5f5f5',
+        },
+        dark: {
+          '--primary-color': '#2196F3',
+          '--primary-hover-color': '#1976D2',
+          '--text-primary-color': '#fff',
+          '--text-secondary-color': '#ccc',
+          '--background-color': '#333',
+        },
+        pink: {
+          '--primary-color': '#E91E63',
+          '--primary-hover-color': '#C2185B',
+          '--text-primary-color': '#333',
+          '--text-secondary-color': '#666',
+          '--background-color': '#fff',
+        },
+        orange: {
+          '--primary-color': '#FF5722',
+          '--primary-hover-color': '#E64A19',
+          '--text-primary-color': '#333',
+          '--text-secondary-color': '#666',
+          '--background-color': '#FFF3E0',
+        },
+      };
+
+      function applyTheme() {
+        const themeSelect = document.getElementById('themeSelect');
+        const selectedTheme = themeSelect.value;
+        const userCards = document.querySelectorAll('user-card');
+
+        const themeObj = Object.entries(themes[selectedTheme]);
+
+        // 应用选中的主题到所有卡片
+        userCards.forEach((card) => {
+          const styleSheet = card.shadowRoot.styleSheets[0];
+          // 遍历所有规则，找到:host规则
+          for (let i = 0; i < styleSheet.cssRules.length; i++) {
+            const rule = styleSheet.cssRules[i];
+            if (rule.selectorText === ':host') {
+              // 修改CSS变量的值
+              themeObj.forEach(([property, value]) => {
+                rule.style.setProperty(property, value);
+              });
+              break;
+            }
+          }
+        });
+      }
+      function frendReqest() {
+        console.log('frendReqest');
+      }
+    </script>
   </body>
+</html>

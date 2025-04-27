@@ -5,9 +5,8 @@
 
 import { noop } from "lodash";
 
-const rawAddEventListener = window.addEventListener;
-const rawRemoveEventListener = window.removeEventListener;
-console.log("1111111", window.addEventListener);
+// const rawAddEventListener = window.addEventListener;
+// const rawRemoveEventListener = window.removeEventListener;
 
 type ListenerMapObject = {
   listener: EventListenerOrEventListenerObject;
